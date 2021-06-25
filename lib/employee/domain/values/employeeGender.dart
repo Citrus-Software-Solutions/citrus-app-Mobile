@@ -1,5 +1,5 @@
 class EmployeeGender {
-  final String? gender;
+  final String gender;
 
   EmployeeGender(this.gender);
 }

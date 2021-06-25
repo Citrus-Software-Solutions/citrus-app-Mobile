@@ -1,5 +1,5 @@
 class EmployeeBirthDate {
-  final DateTime? birthDate;
+  final DateTime birthDate;
 
   EmployeeBirthDate(this.birthDate);
 }
