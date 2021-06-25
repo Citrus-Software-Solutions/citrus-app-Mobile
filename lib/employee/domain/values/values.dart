@@ -1,5 +1,5 @@
 library employee_values;
 
-export 'EmployeeBirthDate.dart';
-export 'EmployeeGender.dart';
-export 'EmployeeName.dart';
+export 'employeeBirthDate.dart';
+export 'employeeGender.dart';
+export 'employeeName.dart';
