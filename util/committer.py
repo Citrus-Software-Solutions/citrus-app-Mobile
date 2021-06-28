@@ -1,4 +1,4 @@
-import os
+from subprocess import call
 
 commit_types = ["feat", "fix", "docs", "refactor", "test"]
 
@@ -28,7 +28,7 @@ print("-" * 80)
 confirm = input("Send this commit? (y/n)")
 
 if confirm == "y":
-  os.system("git add .")
-  os.system("git commit -m '%s'" % commit_text)
+  call(["git", "add", "."])
+  call(["git", "commit", "-m", '"%s"' % commit_text])
 else:
     print("Commit cancelado")
