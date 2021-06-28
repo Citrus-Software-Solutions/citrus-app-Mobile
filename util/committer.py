@@ -1,3 +1,5 @@
+import os
+
 commit_types = ["feat", "fix", "docs", "refactor", "test"]
 
 commit_type = input("Commit Type: ")
@@ -19,4 +21,14 @@ commit_text = "[%s] - %s\n\n%s" % (commit_type, commit_title, commit_body)
 if commit_task_id != "":
   commit_text += "\n\nID Tarea: %s" % commit_task_id
 
+print("-" * 80)
 print(commit_text)
+print("-" * 80)
+
+confirm = input("Send this commit? (y/n)")
+
+if confirm == "y":
+  os.system("git add .")
+  os.system("git commit -m '%s'" % commit_text)
+else:
+    print("Commit cancelado")
