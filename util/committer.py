@@ -25,7 +25,7 @@ print("-" * 80)
 print(commit_text)
 print("-" * 80)
 
-confirm = input("Send this commit? (y/n)")
+confirm = input("Send this commit? (y/n) ")
 
 if confirm == "y":
   call(["git", "add", "."])
