@@ -29,6 +29,7 @@ confirm = input("Send this commit? (y/n)")
 
 if confirm == "y":
   call(["git", "add", "."])
-  call(["git", "commit", "-m", '"%s"' % commit_text])
+  call(["git", "commit", "-m", "%s" % commit_text])
+  call(["git", "push"])
 else:
     print("Commit cancelado")
