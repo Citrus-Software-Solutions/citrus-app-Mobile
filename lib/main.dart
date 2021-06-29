@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Citrus App Mobile'),
     );
   }
 }
@@ -39,7 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   late Future<List<JobOffer>> _futureListJobOffer;
   late JobOffer _jobOffer = new JobOffer(
       new OfferId(10),
@@ -57,12 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _fetchJobOffer();
     _fetchJobOffers();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
   }
 
   void _fetchJobOffers() async {
@@ -99,13 +92,6 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Text(
               _jobOffer.name.name.toString(),
               style: Theme.of(context).textTheme.headline4,
             ),
@@ -130,8 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _fetchJobOffer,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+        tooltip: 'Fetch Job Offer',
+        child: Icon(Icons.arrow_downward_rounded),
       ),
     );
   }
