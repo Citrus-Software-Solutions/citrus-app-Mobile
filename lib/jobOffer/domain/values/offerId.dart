@@ -6,4 +6,7 @@ class OfferId {
   int? getId() {
     return this.offerId;
   }
+  String getOfferIdToString() {
+    return this.offerId.toString();
+  }
 }
