@@ -1,5 +1,8 @@
+import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferPersistenceAdapter.dart';
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferRepository.dart';
 import 'package:citrus_app_mobile/jobOffer/adapter/out/mocJobOfferRepository.dart';
+import 'package:citrus_app_mobile/jobOffer/application/port/out/loadJobOffersPort.dart';
+import 'package:citrus_app_mobile/jobOffer/application/service/showAllJobOffersService.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
 import 'package:citrus_app_mobile/user/values/values.dart';
@@ -37,6 +40,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  late Future<List<JobOffer>> _futureListJobOffer;
   late JobOffer _jobOffer = new JobOffer(
       new OfferId(10),
       new Employer(new UserAuth('asdasd', 'asdasd', 'asdsadasd'), new UserId(1),
@@ -52,11 +56,24 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _fetchJobOffer();
+    _fetchJobOffers();
   }
 
   void _incrementCounter() {
     setState(() {
       _counter++;
+    });
+  }
+
+  void _fetchJobOffers() async {
+    JobOfferRepository jobOfferRepository = new MockJobOfferRepository();
+    LoadJobOffersPort loadJobOffersPort =
+        new JobOfferPersistenceAdapter(jobOfferRepository);
+    ShowAllJobOfferService showAllJobOfferService =
+        new ShowAllJobOfferService(loadJobOffersPort);
+
+    setState(() {
+      _futureListJobOffer = showAllJobOfferService.showAllOffers();
     });
   }
 
@@ -91,6 +108,22 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               _jobOffer.name.name.toString(),
               style: Theme.of(context).textTheme.headline4,
+            ),
+            FutureBuilder<List<JobOffer>>(
+              future: _futureListJobOffer,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  String titles = "";
+                  for (var data in snapshot.data!) {
+                    titles += ' | ' + data.name.name.toString();
+                  }
+                  return Text(titles);
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+
+                return CircularProgressIndicator();
+              },
             ),
           ],
         ),
