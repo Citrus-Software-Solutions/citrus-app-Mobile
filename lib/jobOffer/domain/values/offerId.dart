@@ -3,6 +3,9 @@ class OfferId {
 
   OfferId(this.offerId);
 
+  int? getId() {
+    return this.offerId;
+  }
   String getOfferIdToString() {
     return this.offerId.toString();
   }

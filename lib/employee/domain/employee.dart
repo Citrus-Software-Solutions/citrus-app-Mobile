@@ -6,9 +6,8 @@ class Employee extends User {
   final EmployeeName name;
   final EmployeeGender gender;
   final EmployeeBirthDate birthDate;
-  final EmployeeId employeeId;
 
   Employee(UserAuth auth, UserId id, UserLocation location, this.name,
-      this.gender, this.birthDate, this.employeeId)
+      this.gender, this.birthDate)
       : super(auth, id, location);
 }
