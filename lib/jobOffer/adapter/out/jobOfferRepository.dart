@@ -18,6 +18,17 @@ abstract class JobOfferRepository {
     return JobOfferMapper.mapToDomainEntityFromJson(jsonDecode(response.body));
   }
 
-  // List<JobOffer> findAllJobOffer();
+  Future<List<JobOffer>> findAllJobOffers() async {
+    final response = await http.get(Uri.parse(apiUrl + 'joboffer/'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load the job offer');
+    }
+    List<JobOffer> allJobOffers = [];
+    for (var jobOffer in jsonDecode(response.body)) {
+      allJobOffers.add(JobOfferMapper.mapToDomainEntityFromJson(jobOffer));
+    }
+    return allJobOffers;
+  }
   // List<JobOffer> applyToJobOffer(OfferId offerId, EmployeeId employeeId);
 }
