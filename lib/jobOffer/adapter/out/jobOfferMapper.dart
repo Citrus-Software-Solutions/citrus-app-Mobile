@@ -1,10 +1,9 @@
 import 'package:citrus_app_mobile/employer/domain/employer.dart';
-import 'package:citrus_app_mobile/employer/domain/values/employerName.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
+
+import 'package:citrus_app_mobile/employer/domain/values/values.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/values.dart';
-import 'package:citrus_app_mobile/user/values/userAuth.dart';
-import 'package:citrus_app_mobile/user/values/userId.dart';
-import 'package:citrus_app_mobile/user/values/userLocation.dart';
+import 'package:citrus_app_mobile/user/values/values.dart';
 
 class JobOfferMapper {
   static JobOffer mapToDomainEntityFromJson(Map<String, dynamic> json) {
