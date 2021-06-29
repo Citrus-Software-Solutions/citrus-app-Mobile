@@ -6,7 +6,6 @@ import 'package:citrus_app_mobile/user/values/values.dart';
 import 'package:flutter/material.dart';
 
 import 'employer/domain/employer.dart';
-import 'employer/domain/values/employerId.dart';
 import 'employer/domain/values/employerName.dart';
 import 'jobOffer/domain/values/values.dart';
 
@@ -40,12 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   late JobOffer _jobOffer = new JobOffer(
       new OfferId(10),
-      new Employer(
-          new UserAuth('asdasd', 'asdasd', 'asdsadasd'),
-          new UserId(1),
-          new UserLocation(1, 'type', 'name'),
-          new EmployerId(1),
-          new EmployerName('name')),
+      new Employer(new UserAuth('asdasd', 'asdasd', 'asdsadasd'), new UserId(1),
+          new UserLocation(1, 'type', 'name'), new EmployerName('name')),
       new OfferName('nombre ofertaaaaa'),
       new OfferDescription('desc ofertaaaaa'),
       new OfferGender('MMMM'),
@@ -69,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     JobOfferRepository jobOfferRepository = new MockJobOfferRepository();
     JobOffer jobOffer =
         await jobOfferRepository.findJobOfferById(new OfferId(1));
+    await jobOfferRepository.findAllJobOffers();
     setState(() {
       _jobOffer = jobOffer;
     });
