@@ -65,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
     JobOffer jobOffer =
         await jobOfferRepository.findJobOfferById(new OfferId(1));
     await jobOfferRepository.findAllJobOffers();
+    jobOfferRepository.applyToJobOffer(new OfferId(1), new UserId(3));
     setState(() {
       _jobOffer = jobOffer;
     });
