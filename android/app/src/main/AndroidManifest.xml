@@ -2,7 +2,7 @@
     package="com.example.citrus_app_mobile">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="citrus_app_mobile"
+        android:label="Citrus App Mobile"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
