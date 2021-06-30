@@ -23,7 +23,7 @@ class JobOfferListItemWidget extends StatelessWidget {
                   jobOffer.description.description.toString(),
                 )),
             leading: CircleAvatar(
-              backgroundColor: Colors.blue,
+              backgroundColor: Theme.of(context).primaryColor,
               child: Text("O" + jobOffer.id.offerId.toString()),
             )),
       );

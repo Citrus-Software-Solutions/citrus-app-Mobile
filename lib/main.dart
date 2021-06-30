@@ -11,7 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Citrus App Mobile',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepOrange,
+        accentColor: Colors.orange,
       ),
       home: JobOfferListScreen(title: 'Job Offer List'),
     );
