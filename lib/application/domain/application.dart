@@ -1,12 +1,12 @@
 import 'package:citrus_app_mobile/application/domain/values/values.dart';
-import 'package:citrus_app_mobile/employee/domain/employee.dart';
-import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
+import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
+import 'package:citrus_app_mobile/user/values/userId.dart';
 
 class Application {
   final ApplicationId id;
   final ApplicationDate dateApplication;
-  final Employee employee;
-  final JobOffer jobOffer;
+  final UserId employeeId;
+  final OfferId jobOfferId;
 
-  Application(this.id, this.dateApplication, this.employee, this.jobOffer);
+  Application(this.id, this.dateApplication, this.employeeId, this.jobOfferId);
 }
