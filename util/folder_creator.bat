@@ -8,3 +8,5 @@ mkdir adapter\out
 mkdir application\port
 mkdir application\service
 mkdir domain\values
+mkdir ui\screens
+mkdir ui\widgets
