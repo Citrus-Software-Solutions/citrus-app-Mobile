@@ -1,5 +1,6 @@
 import 'package:citrus_app_mobile/jobOffer/ui/screens/jobOfferListScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:citrus_app_mobile/widgets/theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,10 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Citrus App Mobile',
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-        accentColor: Colors.orange,
-      ),
+      theme: new CitrusTheme().build(),
       home: JobOfferListScreen(title: 'Job Offer List'),
     );
   }
