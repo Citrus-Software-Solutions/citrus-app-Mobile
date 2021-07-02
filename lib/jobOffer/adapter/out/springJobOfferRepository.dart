@@ -1,13 +1,15 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferMapper.dart';
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferRepository.dart';
-import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
+import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 
 class SpringJobOfferRepository extends JobOfferRepository {
   final String apiUrl = "http://10.0.0.101:3000/";
 
+  @override
   Future<JobOffer> findJobOfferById(OfferId id) async {
     final response =
         await http.get(Uri.parse(apiUrl + 'JobOffer/' + id.getIdToString));
@@ -19,6 +21,7 @@ class SpringJobOfferRepository extends JobOfferRepository {
     return JobOfferMapper.mapToDomainEntityFromJson(jsonDecode(response.body));
   }
 
+  @override
   Future<List<JobOffer>> findAllJobOffers() async {
     final response = await http.get(Uri.parse(apiUrl + 'JobOffer'));
 

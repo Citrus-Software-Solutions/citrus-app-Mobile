@@ -1,14 +1,16 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferMapper.dart';
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferRepository.dart';
-import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
+import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 
 class MockJobOfferRepository extends JobOfferRepository {
   final String apiUrl =
       "https://my-json-server.typicode.com/analetty/pruebatipfy/";
 
+  @override
   Future<JobOffer> findJobOfferById(OfferId id) async {
     final response =
         await http.get(Uri.parse(apiUrl + 'joboffer/' + id.getIdToString));
@@ -19,10 +21,18 @@ class MockJobOfferRepository extends JobOfferRepository {
     return JobOfferMapper.mapToDomainEntityFromJson(jsonDecode(response.body));
   }
 
-  // List<JobOffer> findAllJobOffer(){
+  @override
+  Future<List<JobOffer>> findAllJobOffers() async {
+    final response = await http.get(Uri.parse(apiUrl + 'joboffer/'));
 
-  // };
-  // List<JobOffer> applyToJobOffer(OfferId offerId, EmployeeId employeeId){
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load the job offers');
+    }
+    List<JobOffer> allJobOffers = [];
+    for (var jobOffer in jsonDecode(response.body)) {
+      allJobOffers.add(JobOfferMapper.mapToDomainEntityFromJson(jobOffer));
+    }
 
-  // };
+    return allJobOffers;
+  }
 }
