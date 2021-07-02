@@ -9,3 +9,4 @@ export 'offerSalary.dart';
 export 'offerAgeRange.dart';
 export 'offerDateRange.dart';
 export 'offerLocation.dart';
+export 'offerVacants.dart';

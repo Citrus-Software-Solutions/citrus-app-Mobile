@@ -1,4 +1,3 @@
-import 'package:citrus_app_mobile/jobOffer/domain/values/offerVacants.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/values.dart';
 import 'package:citrus_app_mobile/employer/domain/employer.dart';
 

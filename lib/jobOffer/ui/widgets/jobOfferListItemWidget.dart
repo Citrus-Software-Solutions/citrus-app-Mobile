@@ -1,6 +1,6 @@
-import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 
 class JobOfferListItemWidget extends StatelessWidget {
   final JobOffer jobOffer;
