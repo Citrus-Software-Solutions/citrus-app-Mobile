@@ -1,6 +1,10 @@
 class OfferAgeRange {
-  final int? minAge;
-  final int? maxAge;
+  final int? _minAge;
+  final int? _maxAge;
 
-  OfferAgeRange(this.minAge, this.maxAge);
+  OfferAgeRange(this._minAge, this._maxAge);
+
+  int? get getminAge => this._minAge;
+
+  int? get getMaxAge => this._maxAge;
 }
