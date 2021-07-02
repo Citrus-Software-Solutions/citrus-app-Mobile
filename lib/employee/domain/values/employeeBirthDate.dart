@@ -1,5 +1,7 @@
 class EmployeeBirthDate {
-  final DateTime birthDate;
+  final DateTime _birthDate;
 
-  EmployeeBirthDate(this.birthDate);
+  EmployeeBirthDate(this._birthDate);
+
+  DateTime get getBirthDate => this._birthDate;
 }

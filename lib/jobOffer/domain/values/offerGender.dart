@@ -1,5 +1,7 @@
 class OfferGender {
-  final String? name;
+  final String? _name;
 
-  OfferGender(this.name);
+  OfferGender(this._name);
+
+  String? get getName => this._name;
 }

@@ -1,5 +1,7 @@
 class EmployerName {
-  final String name;
+  final String? _name;
 
-  EmployerName(this.name);
+  EmployerName(this._name);
+
+  String get getName => this._name.toString();
 }

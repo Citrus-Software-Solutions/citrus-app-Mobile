@@ -14,14 +14,14 @@ class CitrusTheme {
 
   ThemeData build() {
     return ThemeData(
-      primaryColor: primaryColor,
-      textTheme: TextTheme(
-        bodyText1: TextStyle(),
-        bodyText2: TextStyle(),
-      ).apply(
-        bodyColor: darkColor,
-        displayColor: darkColor,
-      ),
-    );
+        primaryColor: primaryColor,
+        textTheme: TextTheme(
+          bodyText1: TextStyle(),
+          bodyText2: TextStyle(),
+        ).apply(
+          bodyColor: darkColor,
+          displayColor: darkColor,
+        ),
+        fontFamily: 'Poppins');
   }
 }

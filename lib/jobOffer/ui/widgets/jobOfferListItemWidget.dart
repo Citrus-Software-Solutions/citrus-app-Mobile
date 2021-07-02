@@ -1,6 +1,6 @@
-import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 
 class JobOfferListItemWidget extends StatelessWidget {
   final JobOffer jobOffer;
@@ -13,18 +13,26 @@ class JobOfferListItemWidget extends StatelessWidget {
     try {
       return Card(
         child: ListTile(
-            title: Text(
-              jobOffer.name.name.toString().toUpperCase(),
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
+            title: Padding(
+                padding: EdgeInsets.only(top: 8.0),
+                child: Text(
+                  jobOffer.getNameToString.toUpperCase(),
+                  style: TextStyle(fontWeight: FontWeight.w800),
+                )),
             subtitle: Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.0),
-                child: Text(
-                  jobOffer.description.description.toString(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text('Compañía: ' + jobOffer.getEmployer.getNameToString),
+                    SizedBox(height: 5),
+                    Text('Ubicación: ' + jobOffer.getLocationToString),
+                  ],
                 )),
             leading: CircleAvatar(
               backgroundColor: Theme.of(context).primaryColor,
-              child: Text("O" + jobOffer.id.offerId.toString()),
+              child: Text("O" + jobOffer.getIdToString),
             )),
       );
     } catch (exception) {
