@@ -4,8 +4,11 @@ import 'package:citrus_app_mobile/user/values/values.dart';
 import 'package:citrus_app_mobile/user/user.dart';
 
 class Employer extends User {
-  final EmployerName name;
+  final EmployerName _name;
 
-  Employer(UserAuth auth, UserId id, UserLocation location, this.name)
-      : super(auth, id, location);
+  Employer(UserId id, this._name) : super(id);
+
+  EmployerName get getName => this._name;
+
+  String get getNameToString => this._name.getName;
 }

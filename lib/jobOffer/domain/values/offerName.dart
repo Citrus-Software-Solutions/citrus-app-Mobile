@@ -1,5 +1,7 @@
 class OfferName {
-  final String? name;
+  final String? _name;
 
-  OfferName(this.name);
+  OfferName(this._name);
+
+  String? get getName => this._name;
 }

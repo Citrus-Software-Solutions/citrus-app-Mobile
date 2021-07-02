@@ -1,5 +1,7 @@
 class OfferDescription {
-  final String? description;
+  final String? _description;
 
-  OfferDescription(this.description);
+  OfferDescription(this._description);
+
+  String? get getDescription => this._description;
 }

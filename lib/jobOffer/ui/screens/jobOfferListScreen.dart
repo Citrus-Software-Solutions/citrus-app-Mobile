@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+
+import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferPersistenceAdapter.dart';
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferRepository.dart';
-import 'package:citrus_app_mobile/jobOffer/adapter/out/mocJobOfferRepository.dart';
+import 'package:citrus_app_mobile/jobOffer/adapter/out/mockJobOfferRepository.dart';
 import 'package:citrus_app_mobile/jobOffer/application/port/out/loadJobOffersPort.dart';
 import 'package:citrus_app_mobile/jobOffer/application/service/showAllJobOffersService.dart';
-import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/widgets/jobOfferListWidget.dart';
-import 'package:flutter/material.dart';
 
 class JobOfferListScreen extends StatefulWidget {
   JobOfferListScreen({Key? key, required this.title}) : super(key: key);

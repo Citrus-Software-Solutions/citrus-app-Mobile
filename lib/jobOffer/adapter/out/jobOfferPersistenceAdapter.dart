@@ -1,3 +1,5 @@
+import 'package:http/http.dart' as http;
+
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferRepository.dart';
 import 'package:citrus_app_mobile/jobOffer/application/port/out/loadJobOffersPort.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
@@ -10,11 +12,11 @@ class JobOfferPersistenceAdapter implements LoadJobOffersPort {
 
   @override
   Future<List<JobOffer>> loadJobOffers() {
-    return _jobOfferRepository.findAllJobOffers();
+    return _jobOfferRepository.findAllJobOffers(http.Client());
   }
 
   @override
   Future<JobOffer> loadJobOffer(OfferId offerId) {
-    return _jobOfferRepository.findJobOfferById(offerId);
+    return _jobOfferRepository.findJobOfferById(http.Client(), offerId);
   }
 }

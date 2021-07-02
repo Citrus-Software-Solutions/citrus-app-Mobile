@@ -1,9 +1,9 @@
 import 'package:citrus_app_mobile/user/values/values.dart';
 
 class User {
-  final UserAuth auth;
-  final UserId id;
-  final UserLocation location;
+  final UserId _id;
 
-  User(this.auth, this.id, this.location);
+  User(this._id);
+
+  int get getUserId => this._id.getId;
 }

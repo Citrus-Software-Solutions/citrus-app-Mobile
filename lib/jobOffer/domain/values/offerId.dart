@@ -1,12 +1,9 @@
 class OfferId {
-  final int? offerId;
+  final int? _offerId;
 
-  OfferId(this.offerId);
+  OfferId(this._offerId);
 
-  int? getId() {
-    return this.offerId;
-  }
-  String getOfferIdToString() {
-    return this.offerId.toString();
-  }
+  int? get getId => this._offerId;
+
+  String get getIdToString => this._offerId.toString();
 }
