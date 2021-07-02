@@ -41,7 +41,16 @@ flutter build apk
 
 ## Testing
 
-(...)
+In order to run the tests, execute the following command from the root of the project:
+
+```
+flutter test test/<test_file>.dart
+```
+
+For more options regarding unit tests, you can execute this command:
+```
+flutter test --help
+```
 
 ## Contributing
 
