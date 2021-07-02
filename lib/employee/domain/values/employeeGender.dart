@@ -1,5 +1,7 @@
 class EmployeeGender {
-  final String gender;
+  final String _gender;
 
-  EmployeeGender(this.gender);
+  EmployeeGender(this._gender);
+
+  String get getGender => this._gender;
 }
