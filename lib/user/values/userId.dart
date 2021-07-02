@@ -1,14 +1,9 @@
 class UserId {
-  final int id;
+  final int _id;
 
-  UserId(this.id);
+  UserId(this._id);
 
+  int get getId => this._id;
 
-  int getId() {
-    return this.id;
-  }
-  
-  String getUserIdToString() {
-    return this.id.toString();
-  }
+  String get getIdToString => this._id.toString();
 }
