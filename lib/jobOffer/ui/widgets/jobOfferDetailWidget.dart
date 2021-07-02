@@ -49,10 +49,9 @@ class JobOfferDetailWidget extends StatelessWidget {
           );
 
           Text description = Text(jobOffer.getDescriptionToString);
-
-          Text requirements = Text(jobOffer.getAgeRange.toString() +
+          Text requirements = Text(jobOffer.getMinAge.toString() +
               " años - " +
-              jobOffer.getAgeRange.toString() +
+              jobOffer.getMaxAge.toString() +
               " años");
 
           Column col = Column(children: [
