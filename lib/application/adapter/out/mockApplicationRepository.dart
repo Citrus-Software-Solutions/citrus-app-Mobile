@@ -1,5 +1,6 @@
 import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';
+import 'package:citrus_app_mobile/application/domain/values/values.dart';
 import 'package:citrus_app_mobile/user/values/values.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -26,7 +27,8 @@ class MockApplicationRepository extends ApplicationRepository {
     if (response.statusCode != 201) {
       throw Exception('Failed to create the application');
     }
-
-    return null;
+    var json = jsonDecode(response.body);
+    return Application(ApplicationId(json['id']),
+        ApplicationDate(new DateTime(2021, 1, 1)), employeeId, offerId);
   }
 }
