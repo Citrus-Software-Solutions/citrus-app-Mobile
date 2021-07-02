@@ -14,11 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Citrus App Mobile',
       theme: new CitrusTheme().build(),
-      home: JobOfferListScreen(title: 'Job Offer List'),
-      // home: JobOfferDetailScreen(
-      //   title: 'Job Offer List',
-      //   offerId: OfferId(1),
-      // ),
+      // home: JobOfferListScreen(title: 'Job Offer List'),
+      home: JobOfferDetailScreen(
+        title: 'Job Offer List',
+        offerId: OfferId(1),
+      ),
     );
   }
 }
