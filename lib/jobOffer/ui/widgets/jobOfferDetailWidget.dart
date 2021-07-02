@@ -18,17 +18,17 @@ class JobOfferDetailWidget extends StatelessWidget {
 
           ListTile details = ListTile(
               title: Text(
-                jobOffer.name.name.toString().toUpperCase(),
+                jobOffer.getNameToString.toUpperCase(),
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
               subtitle: Padding(
                   padding: EdgeInsets.symmetric(vertical: 6.0),
                   child: Text(
-                    jobOffer.description.description.toString(),
+                    jobOffer.getDescriptionToString,
                   )),
               leading: CircleAvatar(
                 backgroundColor: Theme.of(context).primaryColor,
-                child: Text("O" + jobOffer.id.offerId.toString()),
+                child: Text("O" + jobOffer.getIdToString),
               ));
 
           //TODO: Crear Widget Title
@@ -48,11 +48,11 @@ class JobOfferDetailWidget extends StatelessWidget {
             ),
           );
 
-          Text description = Text(jobOffer.description.description.toString());
+          Text description = Text(jobOffer.getDescriptionToString);
 
-          Text requirements = Text(jobOffer.ageRange.minAge.toString() +
+          Text requirements = Text(jobOffer.getAgeRange.toString() +
               " años - " +
-              jobOffer.ageRange.maxAge.toString() +
+              jobOffer.getAgeRange.toString() +
               " años");
 
           Column col = Column(children: [
@@ -71,7 +71,6 @@ class JobOfferDetailWidget extends StatelessWidget {
           return Card(
             child: col,
           );
-          ;
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
         }

@@ -1,6 +1,5 @@
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/screens/jobOfferDetailScreen.dart';
-import 'package:citrus_app_mobile/jobOffer/ui/screens/jobOfferListScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:citrus_app_mobile/widgets/theme.dart';
 
