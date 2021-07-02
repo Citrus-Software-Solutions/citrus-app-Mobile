@@ -1,3 +1,6 @@
+import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
+import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
+
 abstract class ShowDetailJobOfferUseCase {
-  void showDetailJobOffer();
+  Future<JobOffer> showDetailJobOffer(OfferId offerId);
 }
