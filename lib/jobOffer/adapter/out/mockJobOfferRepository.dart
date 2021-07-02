@@ -11,9 +11,9 @@ class MockJobOfferRepository extends JobOfferRepository {
       "https://my-json-server.typicode.com/analetty/pruebatipfy/";
 
   @override
-  Future<JobOffer> findJobOfferById(OfferId id) async {
+  Future<JobOffer> findJobOfferById(http.Client client, OfferId id) async {
     final response =
-        await http.get(Uri.parse(apiUrl + 'joboffer/' + id.getIdToString));
+        await client.get(Uri.parse(apiUrl + 'joboffer/' + id.getIdToString));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offer');
@@ -22,8 +22,8 @@ class MockJobOfferRepository extends JobOfferRepository {
   }
 
   @override
-  Future<List<JobOffer>> findAllJobOffers() async {
-    final response = await http.get(Uri.parse(apiUrl + 'joboffer/'));
+  Future<List<JobOffer>> findAllJobOffers(http.Client client) async {
+    final response = await client.get(Uri.parse(apiUrl + 'joboffer/'));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offers');

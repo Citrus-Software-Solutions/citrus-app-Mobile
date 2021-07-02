@@ -10,9 +10,9 @@ class SpringJobOfferRepository extends JobOfferRepository {
   final String apiUrl = "http://10.0.0.101:3000/";
 
   @override
-  Future<JobOffer> findJobOfferById(OfferId id) async {
+  Future<JobOffer> findJobOfferById(http.Client client, OfferId id) async {
     final response =
-        await http.get(Uri.parse(apiUrl + 'JobOffer/' + id.getIdToString));
+        await client.get(Uri.parse(apiUrl + 'JobOffer/' + id.getIdToString));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offer');
@@ -22,8 +22,8 @@ class SpringJobOfferRepository extends JobOfferRepository {
   }
 
   @override
-  Future<List<JobOffer>> findAllJobOffers() async {
-    final response = await http.get(Uri.parse(apiUrl + 'JobOffer'));
+  Future<List<JobOffer>> findAllJobOffers(http.Client client) async {
+    final response = await client.get(Uri.parse(apiUrl + 'JobOffer'));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offers');
@@ -39,11 +39,4 @@ class SpringJobOfferRepository extends JobOfferRepository {
 
     return allJobOffers;
   }
-
-  // List<JobOffer> findAllJobOffer(){
-
-  // };
-  // List<JobOffer> applyToJobOffer(OfferId offerId, EmployeeId employeeId){
-
-  // };
 }
