@@ -1,5 +1,6 @@
+import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
+import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
+
 abstract class ShowDetailJobOfferUseCase {
-  // no se si es void, creo que no. No?
-  // no sé si vamos a usar el patron Command como buckpal
-  void showDetailJobOffer();
+  Future<JobOffer> showDetailJobOffer(OfferId offerId);
 }
