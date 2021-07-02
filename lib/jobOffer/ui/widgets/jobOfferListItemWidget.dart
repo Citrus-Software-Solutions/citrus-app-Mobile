@@ -17,7 +17,7 @@ class JobOfferListItemWidget extends StatelessWidget {
                 padding: EdgeInsets.only(top: 8.0),
                 child: Text(
                   jobOffer.getNameToString.toUpperCase(),
-                  style: TextStyle(fontWeight: FontWeight.w500),
+                  style: TextStyle(fontWeight: FontWeight.w800),
                 )),
             subtitle: Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.0),
