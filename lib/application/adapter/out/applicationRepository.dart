@@ -16,8 +16,8 @@ abstract class ApplicationRepository {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
-        'jobOfferId': offerId.getId(),
-        'employeeId': employeeId.getId(),
+        'jobOfferId': offerId.getId,
+        'employeeId': employeeId.getId,
       }),
     );
 

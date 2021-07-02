@@ -10,7 +10,7 @@ abstract class JobOfferRepository {
 
   Future<JobOffer> findJobOfferById(OfferId id) async {
     final response =
-        await http.get(Uri.parse(apiUrl + 'joboffer/' + id.offerId.toString()));
+        await http.get(Uri.parse(apiUrl + 'joboffer/' + id.getIdToString));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offer');
@@ -28,6 +28,7 @@ abstract class JobOfferRepository {
     for (var jobOffer in jsonDecode(response.body)) {
       allJobOffers.add(JobOfferMapper.mapToDomainEntityFromJson(jobOffer));
     }
+
     return allJobOffers;
   }
 }

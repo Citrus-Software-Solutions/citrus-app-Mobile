@@ -11,7 +11,7 @@ class MockJobOfferRepository extends JobOfferRepository {
 
   Future<JobOffer> findJobOfferById(OfferId id) async {
     final response =
-        await http.get(Uri.parse(apiUrl + 'joboffer/' + id.offerId.toString()));
+        await http.get(Uri.parse(apiUrl + 'joboffer/' + id.getIdToString));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offer');
