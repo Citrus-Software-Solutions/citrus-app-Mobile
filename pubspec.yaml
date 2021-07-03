@@ -90,7 +90,8 @@ flutter:
         - asset: util/fonts/Poppins/Poppins-BlackItalic.ttf
           weight: 900
           style: italic
-
+  assets:
+    - util/img/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
