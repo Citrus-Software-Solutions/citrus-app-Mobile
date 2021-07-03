@@ -72,31 +72,34 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
     );
   }
 
+  showConfirmationDialog(BuildContext context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        content: const Text(
+            '¿Está seguro que desea aplicar a esta oferta de trabajo?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'No'),
+            child: const Text('No'),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context, 'Si');
+              _createApplication(offerId, UserId(11));
+            },
+            child: const Text('Si'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     try {
       return TextButton(
-          onPressed: () => showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  title: const Text('Alerta'),
-                  content: const Text(
-                      '¿Está seguro que desea aplicar a esta oferta de trabajo?'),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'No'),
-                      child: const Text('No'),
-                    ),
-                    TextButton(
-                      onPressed: () async {
-                        Navigator.pop(context, 'Si');
-                        _createApplication(offerId, UserId(11));
-                      },
-                      child: const Text('Si'),
-                    ),
-                  ],
-                ),
-              ),
+          onPressed: () => _hasApplied ? null : showConfirmationDialog(context),
           child: _hasApplied
               ? Text('Espere su respuesta')
               : Text('Aplicar ahora'));
