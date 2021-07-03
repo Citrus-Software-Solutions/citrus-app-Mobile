@@ -1,4 +1,4 @@
-import 'package:citrus_app_mobile/application/ui/widgets/applicationButtonWidget.dart';
+import 'package:citrus_app_mobile/application/ui/widgets/applyButtonWidget.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,19 +17,33 @@ class JobOfferDetailWidget extends StatelessWidget {
           JobOffer jobOffer = snapshot.data!;
 
           ListTile details = ListTile(
-              title: Text(
-                jobOffer.getNameToString.toUpperCase(),
-                style: TextStyle(fontWeight: FontWeight.w500),
+              title: Padding(
+                padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                child: Text(
+                  jobOffer.getNameToString.toUpperCase(),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.secondary),
+                ),
               ),
               subtitle: Padding(
                   padding: EdgeInsets.symmetric(vertical: 6.0),
-                  child: Text(
-                    jobOffer.getDescriptionToString,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.location_on_sharp,
+                        color: Theme.of(context).colorScheme.secondaryVariant,
+                      ),
+                      Text(
+                        jobOffer.getLocationToString,
+                      )
+                    ],
                   )),
               leading: CircleAvatar(
-                backgroundColor: Theme.of(context).primaryColor,
-                child: Text("O" + jobOffer.getIdToString),
-              ));
+                  radius: 30,
+                  child: ClipOval(
+                    child: Image.asset('util/img/citrus-logo.JPG'),
+                  )));
 
           //TODO: Crear Widget Title
           Text labelDescription = Text(
@@ -63,7 +77,7 @@ class JobOfferDetailWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[ApplicationButtonWidget(jobOffer: jobOffer)],
+              children: <Widget>[ApplyButtonWidget(offerId: jobOffer.getId)],
             )
           ]);
 
