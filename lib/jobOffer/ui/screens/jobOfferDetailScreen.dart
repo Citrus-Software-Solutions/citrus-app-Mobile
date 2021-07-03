@@ -16,14 +16,15 @@ class JobOfferDetailScreen extends StatefulWidget {
   final OfferId offerId;
 
   @override
-  _JobOfferDetailScreen createState() => _JobOfferDetailScreen(offerId);
+  _JobOfferDetailScreen createState() => _JobOfferDetailScreen(title, offerId);
 }
 
 class _JobOfferDetailScreen extends State<JobOfferDetailScreen> {
   late Future<JobOffer> _futureJobOffer;
   OfferId offerId;
+  String title;
 
-  _JobOfferDetailScreen(this.offerId);
+  _JobOfferDetailScreen(this.title, this.offerId);
 
   @override
   void initState() {
@@ -48,7 +49,25 @@ class _JobOfferDetailScreen extends State<JobOfferDetailScreen> {
     return Scaffold(
       // TODO: Appbar generico, que acepte el titulo
       appBar: AppBar(
-        title: Text('Job Offer List'),
+        backgroundColor: Colors.white,
+        bottomOpacity: 0.0,
+        shadowColor: Colors.transparent,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'util/img/citrus-logo.JPG',
+              fit: BoxFit.contain,
+              height: 32,
+            ),
+            Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'CitrusAPP',
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ))
+          ],
+        ),
       ),
       body: JobOfferDetailWidget(futureJobOffer: _futureJobOffer),
     );
