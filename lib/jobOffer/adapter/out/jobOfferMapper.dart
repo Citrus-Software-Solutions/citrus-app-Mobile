@@ -19,7 +19,7 @@ class JobOfferMapper {
         new OfferDescription(json['description']),
         new OfferStatus(json['status']),
         new OfferGender(json['gender']),
-        new OfferSalary(json['salary']),
+        new OfferSalary(double.parse(json['salary'].toString())),
         new OfferVacants(json['available_vacans']),
         new OfferDateRange(DateTime.parse(json['date_begin']),
             DateTime.parse(json['date_end'])),
