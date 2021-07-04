@@ -19,12 +19,11 @@ class JobOfferDetailWidget extends StatelessWidget {
           ListTile details = ListTile(
               title: Padding(
                 padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                child: Text(
-                  jobOffer.getNameToString.toUpperCase(),
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.secondary),
-                ),
+                child: Text(jobOffer.getNameToString.toUpperCase(),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.secondary),
+                    key: Key('offerDetailTitle')),
               ),
               subtitle: Padding(
                   padding: EdgeInsets.symmetric(vertical: 6.0),
