@@ -36,8 +36,10 @@ flutter run
 In order to build an Android APK, run the following command from the command line.
 
 ```
-flutter build apk
+flutter build apk --split-per-abi
 ```
+
+You can test our app on any Android device by downloading the [APK file](https://drive.google.com/drive/folders/1-J3LpVzF7hqwfI5b0at8XELWL_McDVdW?usp=sharing)
 
 ## Testing
 
