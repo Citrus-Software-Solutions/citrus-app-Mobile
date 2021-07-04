@@ -1,4 +1,4 @@
-<center># Citrus App Mobile</center>
+# Citrus App Mobile
 
 ---
 
