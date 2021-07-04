@@ -1,6 +1,5 @@
 import 'package:citrus_app_mobile/employer/domain/employer.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
-import 'dart:convert';
 
 import 'package:citrus_app_mobile/employer/domain/values/values.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/values.dart';
@@ -8,9 +7,6 @@ import 'package:citrus_app_mobile/user/values/values.dart';
 
 class JobOfferMapper {
   static JobOffer mapToDomainEntityFromJson(Map<String, dynamic> json) {
-    JsonEncoder encoder = new JsonEncoder.withIndent('  ');
-    String prettyprint = encoder.convert(json);
-    print(prettyprint);
     return JobOffer(
         new OfferId(json['id']),
         new Employer(new UserId(json['employer']['id']),
