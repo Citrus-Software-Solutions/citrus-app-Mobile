@@ -1,4 +1,4 @@
-import 'package:citrus_app_mobile/application/ui/widgets/applicationButtonWidget.dart';
+import 'package:citrus_app_mobile/application/ui/widgets/applyButtonWidget.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,53 +17,93 @@ class JobOfferDetailWidget extends StatelessWidget {
           JobOffer jobOffer = snapshot.data!;
 
           ListTile details = ListTile(
-              title: Text(
-                jobOffer.getNameToString.toUpperCase(),
-                style: TextStyle(fontWeight: FontWeight.w500),
+              title: Padding(
+                padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                child: Text(jobOffer.getNameToString.toUpperCase(),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.secondary),
+                    key: Key('offerDetailTitle')),
               ),
               subtitle: Padding(
                   padding: EdgeInsets.symmetric(vertical: 6.0),
-                  child: Text(
-                    jobOffer.getDescriptionToString,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.location_on_sharp,
+                        color: Theme.of(context).colorScheme.secondaryVariant,
+                      ),
+                      Text(
+                        jobOffer.getLocationToString,
+                      )
+                    ],
                   )),
               leading: CircleAvatar(
-                backgroundColor: Theme.of(context).primaryColor,
-                child: Text("O" + jobOffer.getIdToString),
-              ));
+                  radius: 30,
+                  child: ClipOval(
+                    child: Image.asset('util/img/citrus-logo.JPG'),
+                  )));
 
           //TODO: Crear Widget Title
-          Text labelDescription = Text(
-            "Descripción",
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-            ),
-          );
-          Text labelRequirements = Text(
-            "Requisitos",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
+          Align labelDescription = Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              "Descripción",
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           );
 
-          Text description = Text(jobOffer.getDescriptionToString);
-          Text requirements = Text(jobOffer.getMinAge.toString() +
+          Align labelRequirements = Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Requisitos",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ));
+
+          Align description = Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                jobOffer.getDescriptionToString,
+                style: TextStyle(
+                  fontSize: 12.0,
+                ),
+              ));
+
+          String textRequirements = jobOffer.getMinAge.toString() +
               " años - " +
               jobOffer.getMaxAge.toString() +
-              " años");
+              " años";
+
+          Align requirements = Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                textRequirements,
+                style: TextStyle(
+                  fontSize: 12.0,
+                ),
+              ));
 
           Column col = Column(children: [
             details,
-            labelDescription,
-            description,
-            labelRequirements,
-            requirements,
+            Padding(
+              padding: EdgeInsets.only(left: 10.0, top: 16.0),
+              child: Column(children: [
+                labelDescription,
+                description,
+                labelRequirements,
+                requirements,
+              ]),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[ApplicationButtonWidget(jobOffer: jobOffer)],
+              children: <Widget>[ApplyButtonWidget(offerId: jobOffer.getId)],
             )
           ]);
 

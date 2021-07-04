@@ -15,11 +15,11 @@ class JobOfferMapper {
         new OfferDescription(json['description']),
         new OfferStatus(json['status']),
         new OfferGender(json['gender']),
-        new OfferSalary(json['salary']),
-        new OfferVacants(json['available_Vacans']),
-        new OfferDateRange(DateTime.parse(json['date_Begin']),
-            DateTime.parse(json['date_End'])),
-        new OfferAgeRange(json['min_Age'], json['max_Age']),
+        new OfferSalary(double.parse(json['salary'].toString())),
+        new OfferVacants(json['available_vacans']),
+        new OfferDateRange(DateTime.parse(json['date_begin']),
+            DateTime.parse(json['date_end'])),
+        new OfferAgeRange(json['min_age'], json['max_age']),
         new OfferLocation(json['location']['id'], json['location']['name']));
   }
 }

@@ -1,6 +1,6 @@
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferPersistenceAdapter.dart';
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferRepository.dart';
-import 'package:citrus_app_mobile/jobOffer/adapter/out/mockJobOfferRepository.dart';
+import 'package:citrus_app_mobile/jobOffer/adapter/out/nestJobOfferRepository.dart';
 import 'package:citrus_app_mobile/jobOffer/application/port/out/loadJobOffersPort.dart';
 import 'package:citrus_app_mobile/jobOffer/application/service/showDetailJobOfferService.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
@@ -16,14 +16,15 @@ class JobOfferDetailScreen extends StatefulWidget {
   final OfferId offerId;
 
   @override
-  _JobOfferDetailScreen createState() => _JobOfferDetailScreen(offerId);
+  _JobOfferDetailScreen createState() => _JobOfferDetailScreen(title, offerId);
 }
 
 class _JobOfferDetailScreen extends State<JobOfferDetailScreen> {
   late Future<JobOffer> _futureJobOffer;
   OfferId offerId;
+  String title;
 
-  _JobOfferDetailScreen(this.offerId);
+  _JobOfferDetailScreen(this.title, this.offerId);
 
   @override
   void initState() {
@@ -32,7 +33,7 @@ class _JobOfferDetailScreen extends State<JobOfferDetailScreen> {
   }
 
   void _fetchJobOffer(OfferId offerId) async {
-    JobOfferRepository jobOfferRepository = new MockJobOfferRepository();
+    JobOfferRepository jobOfferRepository = new NestJobOfferRepository();
     LoadJobOffersPort loadJobOfferPort =
         new JobOfferPersistenceAdapter(jobOfferRepository);
     ShowDetailJobOfferService showDetailJobOfferService =
@@ -48,7 +49,25 @@ class _JobOfferDetailScreen extends State<JobOfferDetailScreen> {
     return Scaffold(
       // TODO: Appbar generico, que acepte el titulo
       appBar: AppBar(
-        title: Text('Job Offer List'),
+        backgroundColor: Colors.white,
+        bottomOpacity: 0.0,
+        shadowColor: Colors.transparent,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'util/img/citrus-logo.JPG',
+              fit: BoxFit.contain,
+              height: 32,
+            ),
+            Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'CitrusAPP',
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ))
+          ],
+        ),
       ),
       body: JobOfferDetailWidget(futureJobOffer: _futureJobOffer),
     );

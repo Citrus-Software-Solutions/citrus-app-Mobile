@@ -22,7 +22,7 @@ void main() {
       when(client.get(Uri.parse(
               'https://my-json-server.typicode.com/analetty/pruebatipfy/joboffer/2')))
           .thenAnswer((_) async => http.Response(
-              '{ "id": 2, "name": "Oferta 2", "description": "Descripción Oferta Laboral 2", "status": "Published", "gender": null, "salary": 423.2, "available_Vacans": 1, "date_Begin": "2021-08-27T04:00:00.000+00:00", "date_End": "2021-08-28T04:00:00.000+00:00", "min_Age": null, "max_Age": null, "employer_Id": 3, "employer": { "id": 3, "name": "Linkbridge", "user_id": 3 }, "location": { "id": 24, "name": "Venezuela" }, "location_Id": 24 }',
+              '{ "id": 2, "name": "Oferta 2", "description": "Descripción Oferta Laboral 2", "status": "Published", "gender": null, "salary": 423.2, "available_vacans": 1, "date_begin": "2021-08-27T04:00:00.000+00:00", "date_end": "2021-08-28T04:00:00.000+00:00", "min_age": null, "max_age": null, "employer_Id": 3, "employer": { "id": 3, "name": "Linkbridge", "user_id": 3 }, "location": { "id": 24, "name": "Venezuela" }, "location_Id": 24 }',
               200));
 
       expect(

@@ -7,12 +7,12 @@ import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 
 class SpringJobOfferRepository extends JobOfferRepository {
-  final String apiUrl = "http://10.0.0.101:3000/";
+  final String apiUrl = "http://127.0.0.1:3000/";
 
   @override
   Future<JobOffer> findJobOfferById(http.Client client, OfferId id) async {
     final response =
-        await client.get(Uri.parse(apiUrl + 'JobOffer/' + id.getIdToString));
+        await client.get(Uri.parse(apiUrl + 'job-offer/' + id.getIdToString));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offer');
@@ -23,17 +23,14 @@ class SpringJobOfferRepository extends JobOfferRepository {
 
   @override
   Future<List<JobOffer>> findAllJobOffers(http.Client client) async {
-    final response = await client.get(Uri.parse(apiUrl + 'JobOffer'));
+    final response =
+        await client.get(Uri.parse(apiUrl + 'job-offer/status/Published'));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offers');
     }
     List<JobOffer> allJobOffers = [];
     for (var jobOffer in jsonDecode(response.body)) {
-      final response = await http.get(
-          Uri.parse(apiUrl + 'employer/' + jobOffer['employer_Id'].toString()));
-      jobOffer['employer'] = jsonDecode(response.body);
-
       allJobOffers.add(JobOfferMapper.mapToDomainEntityFromJson(jobOffer));
     }
 

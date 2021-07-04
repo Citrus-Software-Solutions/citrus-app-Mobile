@@ -34,6 +34,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
   test: ^1.16.8
   build_runner: ^2.0.5
   faker: ^2.0.0
@@ -91,7 +93,8 @@ flutter:
         - asset: util/fonts/Poppins/Poppins-BlackItalic.ttf
           weight: 900
           style: italic
-
+  assets:
+    - util/img/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

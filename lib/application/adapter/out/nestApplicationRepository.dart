@@ -6,8 +6,8 @@ import 'package:citrus_app_mobile/application/domain/application.dart';
 import 'package:citrus_app_mobile/user/values/values.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
 
-class SpringApplicationRepository extends ApplicationRepository {
-  final String apiUrl = "http://10.0.0.101:3000/";
+class NestApplicationRepository extends ApplicationRepository {
+  final String apiUrl = "https://citrus-api-nest.herokuapp.com/api-nest/";
 
   @override
   Future<Application?> applyToJobOffer(

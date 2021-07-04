@@ -1,9 +1,9 @@
 class ApplicationId {
-  final String? id;
+  final int? id;
 
   ApplicationId(this.id);
 
-  String getApplicationIdToString() {
-    return this.id.toString();
+  int? getApplicationIdToString() {
+    return this.id;
   }
 }
