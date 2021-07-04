@@ -53,8 +53,6 @@ class NestJobOfferRepository extends JobOfferRepository {
     List<JobOffer> allJobOffers = [];
     for (var jobOffer in jsonDecode(response.body)) {
       if (jobOffer['status'] == 'Published') {
-        print(jobOffer['creador']['name']);
-
         Map<String, dynamic> json = {
           "id": jobOffer['id'],
           "name": jobOffer['name'],
