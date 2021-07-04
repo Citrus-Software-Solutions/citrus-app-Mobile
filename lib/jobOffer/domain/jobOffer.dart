@@ -74,5 +74,5 @@ class JobOffer {
 
   OfferLocation get getLocation => this._location;
 
-  String get getLocationToString => this._location.getLocation;
+  String get getLocationToString => this._location.getLocation.toString();
 }
