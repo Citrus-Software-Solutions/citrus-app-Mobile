@@ -1,9 +1,9 @@
+import 'package:citrus_app_mobile/jobOffer/adapter/out/nestJobOfferRepository.dart';
 import 'package:flutter/material.dart';
 
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferPersistenceAdapter.dart';
 import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferRepository.dart';
-import 'package:citrus_app_mobile/jobOffer/adapter/out/mockJobOfferRepository.dart';
 import 'package:citrus_app_mobile/jobOffer/application/port/out/loadJobOffersPort.dart';
 import 'package:citrus_app_mobile/jobOffer/application/service/showAllJobOffersService.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/widgets/jobOfferListWidget.dart';
@@ -29,7 +29,7 @@ class _JobOfferListScreen extends State<JobOfferListScreen> {
   }
 
   void _fetchJobOffers() async {
-    JobOfferRepository jobOfferRepository = new MockJobOfferRepository();
+    JobOfferRepository jobOfferRepository = new NestJobOfferRepository();
     LoadJobOffersPort loadJobOffersPort =
         new JobOfferPersistenceAdapter(jobOfferRepository);
     ShowAllJobOfferService showAllJobOfferService =
