@@ -4,7 +4,9 @@
 
 ### Description
 
-Citrus App Mobile is a job finder mobile app developed using Flutter.
+Citrus App is a job finder app created and developed by Citrus Software Solutions.
+
+<p>This repository contains our API developed in the <a href="https://flutter.dev/" target="_blank">Flutter</a> framework using CLEAN or Hexagonal Architecture.</p>
 
 ### Built with
 
