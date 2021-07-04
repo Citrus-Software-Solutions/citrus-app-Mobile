@@ -46,34 +46,61 @@ class JobOfferDetailWidget extends StatelessWidget {
                   )));
 
           //TODO: Crear Widget Title
-          Text labelDescription = Text(
-            "Descripción",
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-            ),
-          );
-          Text labelRequirements = Text(
-            "Requisitos",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
+          Align labelDescription = Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              "Descripción",
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           );
 
-          Text description = Text(jobOffer.getDescriptionToString);
-          Text requirements = Text(jobOffer.getMinAge.toString() +
+          Align labelRequirements = Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Requisitos",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ));
+
+          Align description = Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                jobOffer.getDescriptionToString,
+                style: TextStyle(
+                  fontSize: 12.0,
+                ),
+              ));
+
+          String textRequirements = jobOffer.getMinAge.toString() +
               " años - " +
               jobOffer.getMaxAge.toString() +
-              " años");
+              " años";
+
+          Align requirements = Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                textRequirements,
+                style: TextStyle(
+                  fontSize: 12.0,
+                ),
+              ));
 
           Column col = Column(children: [
             details,
-            labelDescription,
-            description,
-            labelRequirements,
-            requirements,
+            Padding(
+              padding: EdgeInsets.only(left: 10.0, top: 16.0),
+              child: Column(children: [
+                labelDescription,
+                description,
+                labelRequirements,
+                requirements,
+              ]),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
