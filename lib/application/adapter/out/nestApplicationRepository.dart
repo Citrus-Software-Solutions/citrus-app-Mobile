@@ -12,14 +12,16 @@ class NestApplicationRepository extends ApplicationRepository {
   @override
   Future<Application?> applyToJobOffer(
       OfferId offerId, UserId employeeId) async {
+    print(new DateTime(2021).toString());
     final response = await http.post(
       Uri.parse(apiUrl + '/job-application'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
-        'jobOfferId': offerId.getId,
         'employeeId': employeeId.getId,
+        'offerId': offerId.getId,
+        'applicationDate': new DateTime(2021).toString()
       }),
     );
 

@@ -17,6 +17,7 @@ class NestJobOfferRepository extends JobOfferRepository {
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offer');
     }
+
     var jobOffer = jsonDecode(response.body);
     Map<String, dynamic> json = {
       "id": jobOffer['id'],

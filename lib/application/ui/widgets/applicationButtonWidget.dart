@@ -1,6 +1,7 @@
 import 'package:citrus_app_mobile/application/adapter/out/applicationPersistenceAdapter.dart';
 import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.dart';
 import 'package:citrus_app_mobile/application/adapter/out/mockApplicationRepository.dart';
+import 'package:citrus_app_mobile/application/adapter/out/springApplicationRepository.dart';
 import 'package:citrus_app_mobile/application/application/port/out/createApplicationPort.dart';
 import 'package:citrus_app_mobile/application/application/service/applyToJobOfferService.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';
@@ -19,7 +20,7 @@ class ApplicationButtonWidget extends StatelessWidget {
   Future<Application?> _createApplication(
       OfferId offerId, UserId employeeId) async {
     ApplicationRepository applicationRepository =
-        new MockApplicationRepository();
+        new SpringApplicationRepository();
     CreateApplicationPort createApplicationPort =
         new ApplicationPersistenceAdapter(applicationRepository);
     ApplyToJobOfferService applyToJobOfferService =
