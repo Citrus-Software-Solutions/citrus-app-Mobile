@@ -1,6 +1,8 @@
 import 'package:citrus_app_mobile/application/adapter/out/applicationPersistenceAdapter.dart';
 import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.dart';
 import 'package:citrus_app_mobile/application/adapter/out/mockApplicationRepository.dart';
+import 'package:citrus_app_mobile/application/adapter/out/nestApplicationRepository.dart';
+import 'package:citrus_app_mobile/application/adapter/out/springApplicationRepository.dart';
 import 'package:citrus_app_mobile/application/application/port/out/createApplicationPort.dart';
 import 'package:citrus_app_mobile/application/application/service/applyToJobOfferService.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';
@@ -27,7 +29,6 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
   @override
   void initState() {
     super.initState();
-    // TODO: Verificar si empleado aplicó a jobOffer
   }
 
   void _createApplication(OfferId offerId, UserId employeeId) async {
@@ -37,21 +38,18 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
         new ApplicationPersistenceAdapter(applicationRepository);
     ApplyToJobOfferService applyToJobOfferService =
         new ApplyToJobOfferService(createApplicationPort);
-    try {
-      showLoaderDialog(context);
 
-      Application? response =
-          await applyToJobOfferService.applyToJobOffer(offerId, employeeId);
+    showLoaderDialog(context);
+
+    applyToJobOfferService.applyToJobOffer(offerId, employeeId).then((value) {
       setState(() {
-        _futureApplication = response;
+        _futureApplication = value;
         if (_futureApplication is Application?) {
           _hasApplied = true;
           Navigator.pop(context);
         }
       });
-    } catch (e) {
-      throw Exception('Hubo un error');
-    }
+    }).onError((error, stackTrace) => showError(context));
   }
 
   showLoaderDialog(BuildContext context) {
@@ -92,6 +90,27 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
               },
               child: const Text('Si'),
               key: Key('applyToJobOffer')),
+        ],
+      ),
+    );
+  }
+
+  showError(BuildContext context) {
+    Navigator.pop(context);
+    setState(() {
+      _hasApplied = true;
+    });
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        content: const Text(
+          'Ha ocurrido un error, ya aplicó a esta oferta de trabajo',
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Ok'),
+            child: const Text('Ok'),
+          ),
         ],
       ),
     );
