@@ -1,4 +1,6 @@
-# Citrus App Mobile
+<p align="center">
+  <h1 align="center"/>Citrus App Mobile</h1>
+</p>
 
 ---
 
