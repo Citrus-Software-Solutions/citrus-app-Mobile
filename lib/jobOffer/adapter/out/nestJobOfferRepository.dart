@@ -12,7 +12,7 @@ class NestJobOfferRepository extends JobOfferRepository {
   @override
   Future<JobOffer> findJobOfferById(http.Client client, OfferId id) async {
     final response =
-        await client.get(Uri.parse(apiUrl + 'job-offer/' + id.getIdToString));
+        await client.get(Uri.parse(apiUrl + 'job-offers/' + id.getIdToString));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offer');
