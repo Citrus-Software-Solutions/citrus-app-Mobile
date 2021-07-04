@@ -27,6 +27,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
   @override
   void initState() {
     super.initState();
+    // TODO: Verificar si empleado aplicó a jobOffer
   }
 
   void _createApplication(OfferId offerId, UserId employeeId) async {
@@ -101,7 +102,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
       return TextButton(
           onPressed: () => _hasApplied ? null : showConfirmationDialog(context),
           child: _hasApplied
-              ? Text('Espere su respuesta')
+              ? Text('Aplicación en proceso')
               : Text('Aplicar ahora'));
     } catch (exception) {
       // TODO: Implementar manejo de errores
