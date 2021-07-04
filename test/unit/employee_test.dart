@@ -8,13 +8,9 @@ import '../mother/employee/employeeMother.dart';
 
 void main() {
   group('JobOffer', () {
-    test('.parse() fails on invalid input', () {
-      expect(() => int.parse('X'), throwsFormatException);
-    });
-
     test('The employee must be of legal age', () {
-      expect(EmployeeBirthDateMother().younger(),
-          throwsA(isA<TooYoungToBeEmployeeException>()));
+      expect(() => EmployeeMother.younger(),
+          throwsA(const TypeMatcher<TooYoungToBeEmployeeException>()));
     });
   });
 }
