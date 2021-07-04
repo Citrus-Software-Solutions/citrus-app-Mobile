@@ -6,7 +6,7 @@
 
 Citrus App is a job finder app created and developed by Citrus Software Solutions.
 
-<p>This repository contains our API developed in the <a href="https://flutter.dev/" target="_blank">Flutter</a> framework using CLEAN or Hexagonal Architecture.</p>
+<p>This repository contains our mobile application developed in the <a href="https://flutter.dev/" target="_blank">Flutter</a> framework using CLEAN or Hexagonal Architecture.</p>
 
 ### Built with
 
