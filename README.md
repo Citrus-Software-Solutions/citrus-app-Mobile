@@ -2,8 +2,6 @@
   <h1 align="center"/>Citrus App Mobile</h1>
 </p>
 
----
-
 ### Description
 
 Citrus App Mobile is a job finder mobile app developed using Flutter.
