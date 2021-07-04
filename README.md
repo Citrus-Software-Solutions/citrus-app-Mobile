@@ -78,6 +78,16 @@ flutter drive --target=test_driver/app.dart
 
 ## Contributing
 
+## Citrus Mobile Developers
+
+<table align="center">
+  <tbody><tr>
+    <td align="center"><a href="https://github.com/analetty" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/27143794?v=4" width="150px;" alt="" style="max-width:100%;"><br><sub><b>Ana Leticia Ibarra</b></sub></a><br><a href="https://github.com/Citrus-Software-Solutions/citrus-app-Mobile/commits?author=analetty" title="Commits"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+    <td align="center"><a href="https://github.com/tguzmani"><img src="https://avatars.githubusercontent.com/u/13774654?v=4" width="150px;" alt="" style="max-width:100%;"><br><sub><b>Tomas Guzmán</b></sub></a><br><a href="https://github.com/Citrus-Software-Solutions/citrus-app-Mobile/commits?author=tguzmani" title="Documentation"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+    <td align="center"><a href="https://github.com/zaidcodes" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/25602460?v=4" width="150px;" alt="" style="max-width:100%;"><br><sub><b>Julio Díaz</b></sub></a><br><a href="https://github.com/Citrus-Software-Solutions/citrus-app-Mobile/commits?author=zaidcodes" title="Documentation"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+  </tr>
+</tbody></table>
+
 Everyone is welcome to contribute code via pull requests, to file issues on GitHub, to fix bugs that people have filed, to add to our documentation, or to help out in any other way.
 
 ## References
