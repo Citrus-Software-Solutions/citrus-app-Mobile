@@ -14,13 +14,35 @@ class JobOfferListWidget extends StatelessWidget {
     return FutureBuilder<List<JobOffer>>(
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return ListView.builder(
+          Text labelDescription = Text(
+            "Ofertas de trabajo".toUpperCase(),
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+          ListView list = ListView.builder(
             itemCount: snapshot.data?.length,
             itemBuilder: (context, index) {
               JobOffer jobOffer = snapshot.data![index];
               return JobOfferListItemWidget(jobOffer: jobOffer);
             },
           );
+          Column col = Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 12, 0, 0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    child: labelDescription,
+                  ),
+                ),
+              ),
+              Expanded(child: list)
+            ],
+          );
+          return col;
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
         }

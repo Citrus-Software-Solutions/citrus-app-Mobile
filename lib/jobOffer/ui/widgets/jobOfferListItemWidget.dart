@@ -1,3 +1,4 @@
+import 'package:citrus_app_mobile/jobOffer/ui/screens/jobOfferDetailScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
@@ -13,11 +14,22 @@ class JobOfferListItemWidget extends StatelessWidget {
     try {
       return Card(
         child: ListTile(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => JobOfferDetailScreen(
+                            title: 'CitrusAPP',
+                            offerId: jobOffer.getId,
+                          )));
+            },
             title: Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Text(
                   jobOffer.getNameToString.toUpperCase(),
-                  style: TextStyle(fontWeight: FontWeight.w800),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      color: Theme.of(context).colorScheme.secondary),
                 )),
             subtitle: Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.0),
@@ -31,9 +43,10 @@ class JobOfferListItemWidget extends StatelessWidget {
                   ],
                 )),
             leading: CircleAvatar(
-              backgroundColor: Theme.of(context).primaryColor,
-              child: Text("O" + jobOffer.getIdToString),
-            )),
+                radius: 30,
+                child: ClipOval(
+                  child: Image.asset('util/img/citrus-logo.JPG'),
+                ))),
       );
     } catch (exception) {
       // TODO: Implementar manejo de errores
