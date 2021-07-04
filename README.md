@@ -69,4 +69,33 @@ Everyone is welcome to contribute code via pull requests, to file issues on GitH
 
 ## References
 
-(...)
+Tom Hombergs - Get Your Hands Dirty on Clean Architecture (2019)
+
+---
+
+Example Implementation of a Hexagonal Architecture | https://github.com/thombergs/buckpal
+
+---
+
+game of life | https://github.com/romainstraet/game-of-life
+
+---
+
+Testing Flutter apps | https://flutter.dev/docs/testing
+
+---
+
+An introduction to integration testing | https://flutter.dev/docs/cookbook/testing/integration/introduction
+
+---
+
+An introduction to unit testing | https://flutter.dev/docs/cookbook/testing/unit/introduction
+
+---
+
+Flutter documentation | https://flutter.dev/docs
+
+---
+
+Clean Architecture: La mejor forma de escalar y mantener tu código | https://youtu.be/y3MWfPDmVqo
+
