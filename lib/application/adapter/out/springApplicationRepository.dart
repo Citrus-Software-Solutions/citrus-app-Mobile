@@ -13,7 +13,7 @@ class SpringApplicationRepository extends ApplicationRepository {
   Future<Application?> applyToJobOffer(
       OfferId offerId, UserId employeeId) async {
     final response = await http.post(
-      Uri.parse(apiUrl + 'application'),
+      Uri.parse(apiUrl + '/job-application'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
