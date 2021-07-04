@@ -78,19 +78,20 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         content: const Text(
-            '¿Está seguro que desea aplicar a esta oferta de trabajo?'),
+            '¿Está seguro que desea aplicar a esta oferta de trabajo?',
+            key: const Key('applicationDialogContent')),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'No'),
             child: const Text('No'),
           ),
           TextButton(
-            onPressed: () async {
-              Navigator.pop(context, 'Si');
-              _createApplication(offerId, UserId(11));
-            },
-            child: const Text('Si'),
-          ),
+              onPressed: () async {
+                Navigator.pop(context, 'Si');
+                _createApplication(offerId, UserId(11));
+              },
+              child: const Text('Si'),
+              key: Key('applyToJobOffer')),
         ],
       ),
     );
@@ -100,10 +101,12 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
   Widget build(BuildContext context) {
     try {
       return TextButton(
-          onPressed: () => _hasApplied ? null : showConfirmationDialog(context),
-          child: _hasApplied
-              ? Text('Aplicación en proceso')
-              : Text('Aplicar ahora'));
+        onPressed: () => _hasApplied ? null : showConfirmationDialog(context),
+        child: _hasApplied
+            ? Text('Aplicación en proceso', key: Key('applyButtonText'))
+            : Text('Aplicar ahora', key: Key('applyButtonText')),
+        key: const Key('apply'),
+      );
     } catch (exception) {
       // TODO: Implementar manejo de errores
       throw Exception('Ocurrió un error - applicationButtonWidget');
