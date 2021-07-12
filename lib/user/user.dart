@@ -1,4 +1,4 @@
-import 'package:citrus_app_mobile/user/values/values.dart';
+import 'package:citrus_app_mobile/user/domain/values/values.dart';
 
 class User {
   final UserId _id;

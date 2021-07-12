@@ -1,7 +1,7 @@
 import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';
 import 'package:citrus_app_mobile/application/domain/values/values.dart';
-import 'package:citrus_app_mobile/user/values/values.dart';
+import 'package:citrus_app_mobile/user/domain/values/values.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';

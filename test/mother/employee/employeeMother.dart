@@ -1,6 +1,6 @@
 import 'package:citrus_app_mobile/employee/domain/employee.dart';
 import 'package:citrus_app_mobile/employee/domain/values/values.dart';
-import 'package:citrus_app_mobile/user/values/userId.dart';
+import 'package:citrus_app_mobile/user/domain/values/userId.dart';
 
 import '../user/userIdMother.dart';
 import 'employeeBirthDateMother.dart';

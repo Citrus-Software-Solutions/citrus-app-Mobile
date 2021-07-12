@@ -2,7 +2,7 @@ import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.
 import 'package:citrus_app_mobile/application/application/port/out/createApplicationPort.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
-import 'package:citrus_app_mobile/user/values/userId.dart';
+import 'package:citrus_app_mobile/user/domain/values/userId.dart';
 
 class ApplicationPersistenceAdapter implements CreateApplicationPort {
   ApplicationRepository _applicationRepository;
