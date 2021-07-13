@@ -22,4 +22,4 @@ mkdir ui\screens
 nul > ui\screens\.gitkeep
 
 mkdir ui\widgets
-nul > ui\widgets.gitkeep
+nul > ui\widgets\.gitkeep

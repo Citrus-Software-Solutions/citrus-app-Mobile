@@ -1,4 +1,4 @@
-import 'package:citrus_app_mobile/user/values/userId.dart';
+import 'package:citrus_app_mobile/user/domain/values/userId.dart';
 import 'dart:math';
 
 class UserIdMother {

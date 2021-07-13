@@ -1,5 +1,5 @@
 import 'package:citrus_app_mobile/employee/domain/values/values.dart';
-import 'package:citrus_app_mobile/user/values/values.dart';
+import 'package:citrus_app_mobile/user/domain/values/values.dart';
 import 'package:citrus_app_mobile/user/user.dart';
 
 class Employee extends User {

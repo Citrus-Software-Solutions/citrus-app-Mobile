@@ -1,6 +1,6 @@
 import 'package:citrus_app_mobile/employer/domain/employer.dart';
 import 'package:citrus_app_mobile/employer/domain/values/values.dart';
-import 'package:citrus_app_mobile/user/values/values.dart';
+import 'package:citrus_app_mobile/user/domain/values/values.dart';
 import 'package:test/test.dart';
 
 void main() {

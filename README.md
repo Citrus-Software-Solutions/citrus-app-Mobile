@@ -55,10 +55,15 @@ You can test our app on any Android device by downloading the [APK file](https:/
 
 ## Testing
 
-In order to run unit and acceptance tests, execute the following command from the root of the project:
+In order to run unit and integration tests, execute the following command from the root of the project:
 
 ```
-flutter test test/<test_file>.dart
+flutter test test/unit
+flutter test test/unit/<test_file>.dart
+
+flutter test test/integration
+flutter test test/integration/<test_file>.dart
+
 ```
 
 For more options regarding unit tests, you can execute this command:
@@ -67,7 +72,7 @@ For more options regarding unit tests, you can execute this command:
 flutter test --help
 ```
 
-The process of running the integration tests varies depending on the platform you are testing against. You can test against a mobile platform or the web.
+The process of running the acceptance tests varies depending on the platform you are testing against. You can test against a mobile platform or the web.
 
 - Testing on Mobile
   To test on iOS or Android, launch an Android Emulator, iOS Simulator, or connect your computer to a real iOS / Android device.
