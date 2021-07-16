@@ -22,18 +22,13 @@ class _JobOfferListScreen extends State<JobOfferListScreen> {
   _JobOfferListScreen(this.title);
 
   @override
-  @mustCallSuper
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
+    final jobOfferActions = Provider.of<JobOfferActions>(context);
 
-    jobOfferActions = Provider.of<JobOfferActions>(context, listen: false);
     jobOfferActions.showAllOffers();
 
     _futureListJobOffer = jobOfferActions.jobOffers;
-  }
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       // TODO: Appbar generico, que acepte el titulo
       appBar: AppBar(

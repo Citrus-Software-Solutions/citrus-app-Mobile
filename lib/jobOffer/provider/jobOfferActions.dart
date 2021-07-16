@@ -8,21 +8,29 @@ import 'package:flutter/cupertino.dart';
 
 class JobOfferActions with ChangeNotifier {
   late Future<List<JobOffer>> _futureListJobOffer;
-  late ShowAllJobOfferService showAllJobOfferService;
+  late ShowAllJobOfferService _showAllJobOfferService;
 
   JobOfferActions() {
     JobOfferRepository jobOfferRepository = new MockJobOfferRepository();
+
     LoadJobOffersPort loadJobOffersPort =
         new JobOfferPersistenceAdapter(jobOfferRepository);
-    showAllJobOfferService = new ShowAllJobOfferService(loadJobOffersPort);
+
+    _showAllJobOfferService = new ShowAllJobOfferService(loadJobOffersPort);
   }
 
   get jobOffers {
     return this._futureListJobOffer;
   }
 
-  void showAllOffers() async {
-    _futureListJobOffer = showAllJobOfferService.showAllOffers();
+  set jobOffers(futureListJobOffer) {
+    _futureListJobOffer = futureListJobOffer;
+
     notifyListeners();
+  }
+
+  void showAllOffers() {
+    var futureListJobOffer = _showAllJobOfferService.showAllOffers();
+    this.jobOffers = futureListJobOffer;
   }
 }
