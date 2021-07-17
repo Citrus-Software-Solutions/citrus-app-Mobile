@@ -6,19 +6,16 @@ import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/widgets/jobOfferListWidget.dart';
 
 class JobOfferListScreen extends StatefulWidget {
-  JobOfferListScreen({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  JobOfferListScreen({Key? key}) : super(key: key);
 
   @override
-  _JobOfferListScreen createState() => _JobOfferListScreen(title);
+  _JobOfferListScreen createState() => _JobOfferListScreen();
 }
 
 class _JobOfferListScreen extends State<JobOfferListScreen> {
   late Future<List<JobOffer>> _futureListJobOffer;
-  String title;
 
-  _JobOfferListScreen(this.title);
+  _JobOfferListScreen();
   @override
   Widget build(BuildContext context) {
     final jobOfferActions = Provider.of<JobOfferActions>(context);
@@ -27,30 +24,7 @@ class _JobOfferListScreen extends State<JobOfferListScreen> {
 
     _futureListJobOffer = jobOfferActions.jobOffers;
 
-    return Scaffold(
-      // TODO: Appbar generico, que acepte el titulo
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        bottomOpacity: 0.0,
-        shadowColor: Colors.transparent,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'util/img/citrus-logo.JPG',
-              fit: BoxFit.contain,
-              height: 32,
-            ),
-            Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'CitrusAPP',
-                  style: TextStyle(color: Theme.of(context).primaryColor),
-                ))
-          ],
-        ),
-      ),
-      body: new JobOfferListWidget(jobOfferList: _futureListJobOffer),
-    );
+    // TODO: Appbar generico, que acepte el titulo
+    return JobOfferListWidget(jobOfferList: _futureListJobOffer);
   }
 }
