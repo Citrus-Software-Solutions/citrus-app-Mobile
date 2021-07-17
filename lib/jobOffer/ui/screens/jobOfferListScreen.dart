@@ -1,9 +1,9 @@
+import 'package:provider/provider.dart';
 import 'package:citrus_app_mobile/jobOffer/provider/jobOfferActions.dart';
 import 'package:flutter/material.dart';
 
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/widgets/jobOfferListWidget.dart';
-import 'package:provider/provider.dart';
 
 class JobOfferListScreen extends StatefulWidget {
   JobOfferListScreen({Key? key, required this.title}) : super(key: key);
@@ -15,12 +15,10 @@ class JobOfferListScreen extends StatefulWidget {
 }
 
 class _JobOfferListScreen extends State<JobOfferListScreen> {
-  String title;
   late Future<List<JobOffer>> _futureListJobOffer;
-  late JobOfferActions jobOfferActions;
+  String title;
 
   _JobOfferListScreen(this.title);
-
   @override
   Widget build(BuildContext context) {
     final jobOfferActions = Provider.of<JobOfferActions>(context);
