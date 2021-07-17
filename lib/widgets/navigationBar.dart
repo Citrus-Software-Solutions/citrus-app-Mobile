@@ -12,12 +12,15 @@ class NavigationBar_State extends State<NavigationBar> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Inicio',
+    ),
     JobOfferListScreen(),
     Text(
-      'Index 1: Entrevistas',
+      'Index 2: Entrevistas',
     ),
     Text(
-      'Index 1: Inicio',
+      'Index 3: Perfil',
     ),
   ];
 
@@ -58,15 +61,19 @@ class NavigationBar_State extends State<NavigationBar> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'JobOffers',
+            label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.work),
+            label: 'Ofertas',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_today),
             label: 'Entrevistas',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Inicio',
+            icon: Icon(Icons.person),
+            label: 'Perfil',
           ),
         ],
         currentIndex: _selectedIndex,
