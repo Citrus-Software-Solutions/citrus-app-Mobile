@@ -1,8 +1,6 @@
 import 'package:citrus_app_mobile/application/adapter/out/applicationPersistenceAdapter.dart';
 import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.dart';
 import 'package:citrus_app_mobile/application/adapter/out/mockApplicationRepository.dart';
-import 'package:citrus_app_mobile/application/adapter/out/nestApplicationRepository.dart';
-import 'package:citrus_app_mobile/application/adapter/out/springApplicationRepository.dart';
 import 'package:citrus_app_mobile/application/application/port/out/createApplicationPort.dart';
 import 'package:citrus_app_mobile/application/application/service/applyToJobOfferService.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';

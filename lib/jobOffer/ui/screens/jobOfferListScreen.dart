@@ -1,13 +1,8 @@
-import 'package:citrus_app_mobile/jobOffer/adapter/out/mockJobOfferRepository.dart';
-import 'package:citrus_app_mobile/jobOffer/adapter/out/nestJobOfferRepository.dart';
-import 'package:citrus_app_mobile/jobOffer/adapter/out/springJobOfferRepository.dart';
+import 'package:provider/provider.dart';
+import 'package:citrus_app_mobile/jobOffer/provider/jobOfferActions.dart';
 import 'package:flutter/material.dart';
 
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
-import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferPersistenceAdapter.dart';
-import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferRepository.dart';
-import 'package:citrus_app_mobile/jobOffer/application/port/out/loadJobOffersPort.dart';
-import 'package:citrus_app_mobile/jobOffer/application/service/showAllJobOffersService.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/widgets/jobOfferListWidget.dart';
 
 class JobOfferListScreen extends StatefulWidget {
@@ -25,25 +20,13 @@ class _JobOfferListScreen extends State<JobOfferListScreen> {
 
   _JobOfferListScreen(this.title);
   @override
-  void initState() {
-    super.initState();
-    _fetchJobOffers();
-  }
-
-  void _fetchJobOffers() async {
-    JobOfferRepository jobOfferRepository = new MockJobOfferRepository();
-    LoadJobOffersPort loadJobOffersPort =
-        new JobOfferPersistenceAdapter(jobOfferRepository);
-    ShowAllJobOfferService showAllJobOfferService =
-        new ShowAllJobOfferService(loadJobOffersPort);
-
-    setState(() {
-      _futureListJobOffer = showAllJobOfferService.showAllOffers();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final jobOfferActions = Provider.of<JobOfferActions>(context);
+
+    jobOfferActions.showAllOffers();
+
+    _futureListJobOffer = jobOfferActions.jobOffers;
+
     return Scaffold(
       // TODO: Appbar generico, que acepte el titulo
       appBar: AppBar(

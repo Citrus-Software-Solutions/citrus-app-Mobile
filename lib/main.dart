@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:citrus_app_mobile/widgets/theme.dart';
 
 import 'jobOffer/ui/screens/jobOfferListScreen.dart';
+import 'mainProvider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyAppProvider());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +14,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Citrus App Mobile',
       theme: new CitrusTheme().build(),
-      // home: JobOfferListScreen(title: 'Job Offer List'),
       home: JobOfferListScreen(title: "CitrusAPP"),
     );
   }

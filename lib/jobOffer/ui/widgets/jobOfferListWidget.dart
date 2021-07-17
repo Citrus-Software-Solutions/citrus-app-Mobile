@@ -9,25 +9,31 @@ class JobOfferListWidget extends StatelessWidget {
   const JobOfferListWidget({Key? key, required this.jobOfferList})
       : super(key: key);
 
+  ListView _jobOfferList(snapshot) {
+    return ListView.builder(
+      itemCount: snapshot.data?.length,
+      itemBuilder: (context, index) {
+        JobOffer jobOffer = snapshot.data![index];
+        return JobOfferListItemWidget(jobOffer: jobOffer, index: index);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    Text labelDescription = Text("Ofertas de trabajo".toUpperCase(),
+        style: TextStyle(
+          fontSize: 18.0,
+          fontWeight: FontWeight.bold,
+        ),
+        key: const Key('offerList'));
+
     return FutureBuilder<List<JobOffer>>(
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          Text labelDescription = Text("Ofertas de trabajo".toUpperCase(),
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-              key: const Key('offerList'));
-          ListView list = ListView.builder(
-            itemCount: snapshot.data?.length,
-            itemBuilder: (context, index) {
-              JobOffer jobOffer = snapshot.data![index];
-              return JobOfferListItemWidget(jobOffer: jobOffer, index: index);
-            },
-          );
-          Column col = Column(
+          ListView list = _jobOfferList(snapshot);
+
+          return Column(
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(20, 12, 0, 0),
@@ -41,7 +47,6 @@ class JobOfferListWidget extends StatelessWidget {
               Expanded(child: list)
             ],
           );
-          return col;
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
         }
