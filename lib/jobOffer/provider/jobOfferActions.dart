@@ -32,5 +32,6 @@ class JobOfferActions with ChangeNotifier {
   void showAllOffers() {
     var futureListJobOffer = _showAllJobOfferService.showAllOffers();
     this.jobOffers = futureListJobOffer;
+    notifyListeners();
   }
 }

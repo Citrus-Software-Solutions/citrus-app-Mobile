@@ -1,4 +1,5 @@
 import 'package:citrus_app_mobile/jobOffer/ui/screens/jobOfferListScreen.dart';
+import 'package:citrus_app_mobile/user/ui/screens/userProfile.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBar extends StatefulWidget {
@@ -19,9 +20,7 @@ class NavigationBar_State extends State<NavigationBar> {
     Text(
       'Index 2: Entrevistas',
     ),
-    Text(
-      'Index 3: Perfil',
-    ),
+    UserProfile(),
   ];
 
   void _onItemTapped(int index) {
