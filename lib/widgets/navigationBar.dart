@@ -1,3 +1,4 @@
+import 'package:citrus_app_mobile/interview/ui/screens/interviewScreen.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/screens/jobOfferListScreen.dart';
 import 'package:citrus_app_mobile/user/ui/screens/userProfile.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,7 @@ class NavigationBar_State extends State<NavigationBar> {
       'Index 0: Inicio',
     ),
     JobOfferListScreen(),
-    Text(
-      'Index 2: Entrevistas',
-    ),
+    TableEventsExample(),
     UserProfile(),
   ];
 
