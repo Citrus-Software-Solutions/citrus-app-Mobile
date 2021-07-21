@@ -5,8 +5,10 @@ import 'package:flutter/widgets.dart';
 
 class JobOfferDetailWidget extends StatelessWidget {
   final Future<JobOffer> futureJobOffer;
+  final Future<bool> hasApplied;
 
-  const JobOfferDetailWidget({Key? key, required this.futureJobOffer})
+  const JobOfferDetailWidget(
+      {Key? key, required this.futureJobOffer, required this.hasApplied})
       : super(key: key);
 
   @override
@@ -103,7 +105,10 @@ class JobOfferDetailWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[ApplyButtonWidget(offerId: jobOffer.getId)],
+              children: <Widget>[
+                ApplyButtonWidget(
+                    offerId: jobOffer.getId, hasApplied: hasApplied)
+              ],
             )
           ]);
 

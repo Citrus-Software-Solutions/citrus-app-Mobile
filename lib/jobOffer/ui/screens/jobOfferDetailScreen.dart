@@ -1,12 +1,10 @@
-import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferPersistenceAdapter.dart';
-import 'package:citrus_app_mobile/jobOffer/adapter/out/jobOfferRepository.dart';
-import 'package:citrus_app_mobile/jobOffer/adapter/out/mockJobOfferRepository.dart';
-import 'package:citrus_app_mobile/jobOffer/application/port/out/loadJobOffersPort.dart';
-import 'package:citrus_app_mobile/jobOffer/application/service/showDetailJobOfferService.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
+import 'package:citrus_app_mobile/jobOffer/provider/jobOfferActions.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/widgets/jobOfferDetailWidget.dart';
+import 'package:citrus_app_mobile/user/domain/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class JobOfferDetailScreen extends StatefulWidget {
   JobOfferDetailScreen({Key? key, required this.title, required this.offerId})
@@ -21,33 +19,23 @@ class JobOfferDetailScreen extends StatefulWidget {
 
 class _JobOfferDetailScreen extends State<JobOfferDetailScreen> {
   late Future<JobOffer> _futureJobOffer;
+  late Future<bool> _hasApplied;
+
   OfferId offerId;
   String title;
 
   _JobOfferDetailScreen(this.title, this.offerId);
 
   @override
-  void initState() {
-    super.initState();
-    _fetchJobOffer(offerId);
-  }
-
-  void _fetchJobOffer(OfferId offerId) async {
-    JobOfferRepository jobOfferRepository = new MockJobOfferRepository();
-    LoadJobOffersPort loadJobOfferPort =
-        new JobOfferPersistenceAdapter(jobOfferRepository);
-    ShowDetailJobOfferService showDetailJobOfferService =
-        new ShowDetailJobOfferService(loadJobOfferPort);
-
-    setState(() {
-      _futureJobOffer = showDetailJobOfferService.showDetailJobOffer(offerId);
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final JobOfferActions jobOfferActions =
+        Provider.of<JobOfferActions>(context);
+
+    jobOfferActions.getJobOffer(offerId);
+    jobOfferActions.hasUserApplied(offerId, UserId(1));
+    _futureJobOffer = jobOfferActions.jobOffer;
+    _hasApplied = jobOfferActions.hasApplied;
     return Scaffold(
-      // TODO: Appbar generico, que acepte el titulo
       appBar: AppBar(
         backgroundColor: Colors.white,
         bottomOpacity: 0.0,
@@ -69,7 +57,8 @@ class _JobOfferDetailScreen extends State<JobOfferDetailScreen> {
           ],
         ),
       ),
-      body: JobOfferDetailWidget(futureJobOffer: _futureJobOffer),
+      body: JobOfferDetailWidget(
+          futureJobOffer: _futureJobOffer, hasApplied: _hasApplied),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:citrus_app_mobile/user/domain/values/userId.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -80,5 +81,12 @@ class NestJobOfferRepository extends JobOfferRepository {
     }
 
     return allJobOffers;
+  }
+
+  @override
+  Future<bool> hasUserApplied(
+      http.Client client, OfferId offerId, UserId userId) {
+    // TODO: implement hasUserApplied
+    throw UnimplementedError();
   }
 }
