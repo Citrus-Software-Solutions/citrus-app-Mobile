@@ -7,10 +7,10 @@ class NavigationBar extends StatefulWidget {
   NavigationBar();
 
   @override
-  NavigationBar_State createState() => NavigationBar_State();
+  NavigationBarState createState() => NavigationBarState();
 }
 
-class NavigationBar_State extends State<NavigationBar> {
+class NavigationBarState extends State<NavigationBar> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
@@ -46,8 +46,10 @@ class NavigationBar_State extends State<NavigationBar> {
             Container(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'CitrusAPP',
-                  style: TextStyle(color: Theme.of(context).primaryColor),
+                  'Jobify',
+                  style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold),
                 ))
           ],
         ),
