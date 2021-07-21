@@ -19,7 +19,7 @@ class CitrusTheme {
             primaryVariant: primaryLightColor,
             secondary: darkColor,
             secondaryVariant: darkGrayColor,
-            surface: whiteColor,
+            surface: darkGrayColor,
             background: whiteColor,
             error: Colors.red,
             onPrimary: primaryColor,
