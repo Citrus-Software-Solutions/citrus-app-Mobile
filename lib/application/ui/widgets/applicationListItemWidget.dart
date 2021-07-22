@@ -28,7 +28,7 @@ class ApplicationListItemWidget extends StatelessWidget {
               padding: EdgeInsets.only(top: 8.0),
               child: Text(
                 // application.getNameToString.toUpperCase(),
-                application.getIdToString,
+                'Aplicación ' + application.getIdToString,
                 style: TextStyle(
                     fontWeight: FontWeight.w800,
                     color: Theme.of(context).colorScheme.secondary),
@@ -42,7 +42,7 @@ class ApplicationListItemWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   // SizedBox(height: 5),
-                  Text('Compañía: '),
+                  Text('Compañía: [compañía]'),
                 ],
               )),
 
