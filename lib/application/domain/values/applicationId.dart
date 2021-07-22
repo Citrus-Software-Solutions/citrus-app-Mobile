@@ -3,7 +3,7 @@ class ApplicationId {
 
   ApplicationId(this.id);
 
-  int? getApplicationIdToString() {
-    return this.id;
+  String getApplicationIdToString() {
+    return this.id.toString();
   }
 }

@@ -1,9 +1,10 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:citrus_app_mobile/application/adapter/out/applicationMapper.dart';
 import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';
 import 'package:citrus_app_mobile/application/domain/values/values.dart';
 import 'package:citrus_app_mobile/user/domain/values/values.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
 
 class MockApplicationRepository extends ApplicationRepository {
@@ -30,5 +31,21 @@ class MockApplicationRepository extends ApplicationRepository {
     var json = jsonDecode(response.body);
     return Application(ApplicationId(json['id']),
         ApplicationDate(new DateTime(2021, 1, 1)), employeeId, offerId);
+  }
+
+  @override
+  Future<List<Application>> findAllApplications(http.Client client) async {
+    final response = await client.get(Uri.parse(apiUrl + 'applications/'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load the applications');
+    }
+    List<Application> allApplications = [];
+    for (var application in jsonDecode(response.body)) {
+      allApplications
+          .add(ApplicationMapper.mapToDomainEntityFromJson(application));
+    }
+
+    return allApplications;
   }
 }
