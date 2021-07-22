@@ -32,7 +32,7 @@ class NestApplicationRepository extends ApplicationRepository {
     return null;
   }
 
-  // 🚩 Falta implementar findAllApplications()
+  // TODO: Falta implementar findAllApplications()
   @override
   noSuchMethod(Invocation invocation) {
     return super.noSuchMethod(invocation);

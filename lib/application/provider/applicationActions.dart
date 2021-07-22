@@ -4,9 +4,6 @@ import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.
 import 'package:citrus_app_mobile/application/adapter/out/mockApplicationRepository.dart';
 import 'package:citrus_app_mobile/application/application/port/out/loadApplicationsPort.dart';
 import 'package:citrus_app_mobile/application/application/service/showAllApplicationsService.dart';
-import 'package:citrus_app_mobile/application/domain/application.dart';
-import 'package:citrus_app_mobile/application/domain/values/values.dart';
-import 'package:citrus_app_mobile/user/domain/values/values.dart';
 import 'package:flutter/cupertino.dart';
 
 class ApplicationActions with ChangeNotifier {
