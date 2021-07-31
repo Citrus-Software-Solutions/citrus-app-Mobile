@@ -1,4 +1,6 @@
 import 'package:citrus_app_mobile/interview/domain/interview.dart';
+import 'package:citrus_app_mobile/interview/domain/values/interviewId.dart';
+import 'package:citrus_app_mobile/interview/ui/widgets/cancelInterviewButonWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +20,7 @@ class InterviewDetailWidget extends StatelessWidget {
         Text('Hora'),
         Text('Estado'),
         Text('Duracion'),
-        TextButton(
-            onPressed: () => Navigator.pop(context), child: Text('Canvelar'))
+        CancelInterviewButtonWidget(interviewId: InterviewId(1))
       ],
     );
   }

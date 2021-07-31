@@ -11,8 +11,24 @@ class MockInterviewRepository extends InterviewRepository {
       "https://my-json-server.typicode.com/analetty/pruebatipfy/";
 
   @override
-  void cancelInterview(http.Client client, InterviewId offerId, UserId userId) {
-    // TODO: implement cancelInterview
+  Future<dynamic> cancelInterview(
+      http.Client client, InterviewId offerId, UserId userId) async {
+    final response = await http.post(
+      Uri.parse(apiUrl + 'interviews'),
+      headers: <String, String>{
+        'Content-Type': 'interviews/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'interviewId': offerId.idToString,
+        'employeeId': userId.getIdToString,
+      }),
+    );
+
+    if (response.statusCode != 201) {
+      throw Exception('Failed to create the application');
+    }
+    var json = jsonDecode(response.body);
+    return json;
   }
 
   @override

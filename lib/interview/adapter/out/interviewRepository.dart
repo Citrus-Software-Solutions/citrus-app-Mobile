@@ -8,5 +8,6 @@ abstract class InterviewRepository {
 
   Future<List<Interview>> findAllInterviews(http.Client client);
 
-  void cancelInterview(http.Client client, InterviewId offerId, UserId userId);
+  Future<dynamic> cancelInterview(
+      http.Client client, InterviewId offerId, UserId userId);
 }

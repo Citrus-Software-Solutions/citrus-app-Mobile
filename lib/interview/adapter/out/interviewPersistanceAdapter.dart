@@ -11,8 +11,8 @@ class InterviewPersistanceAdapter implements LoadInterviewsPort {
   InterviewPersistanceAdapter(this._interviewRepository);
 
   @override
-  void cancelInterview(InterviewId offerId, UserId userId) {
-    _interviewRepository.cancelInterview(http.Client(), offerId, userId);
+  Future<dynamic> cancelInterview(InterviewId offerId, UserId userId) {
+    return _interviewRepository.cancelInterview(http.Client(), offerId, userId);
   }
 
   @override

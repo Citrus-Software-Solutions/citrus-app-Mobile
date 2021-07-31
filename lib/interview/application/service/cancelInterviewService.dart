@@ -9,7 +9,7 @@ class CancelInterviewService implements CancelInterviewUseCase {
   CancelInterviewService(this._loadInterviewsPort);
 
   @override
-  void cancelInterview(InterviewId interviewId, UserId userId) {
+  Future<dynamic> cancelInterview(InterviewId interviewId, UserId userId) {
     return this._loadInterviewsPort.cancelInterview(interviewId, userId);
   }
 }

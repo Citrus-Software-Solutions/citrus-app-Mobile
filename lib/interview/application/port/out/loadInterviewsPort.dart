@@ -5,5 +5,5 @@ import 'package:citrus_app_mobile/user/domain/values/values.dart';
 abstract class LoadInterviewsPort {
   Future<List<Interview>> loadInterviews();
   Future<Interview> loadInterview(InterviewId interviewId);
-  void cancelInterview(InterviewId offerId, UserId userId);
+  Future<dynamic> cancelInterview(InterviewId offerId, UserId userId);
 }
