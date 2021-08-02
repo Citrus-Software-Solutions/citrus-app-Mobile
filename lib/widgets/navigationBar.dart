@@ -1,14 +1,16 @@
+import 'package:citrus_app_mobile/interview/ui/screens/interviewScreen.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/screens/jobOfferListScreen.dart';
+import 'package:citrus_app_mobile/user/ui/screens/userProfile.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBar extends StatefulWidget {
   NavigationBar();
 
   @override
-  NavigationBar_State createState() => NavigationBar_State();
+  NavigationBarState createState() => NavigationBarState();
 }
 
-class NavigationBar_State extends State<NavigationBar> {
+class NavigationBarState extends State<NavigationBar> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
@@ -16,12 +18,8 @@ class NavigationBar_State extends State<NavigationBar> {
       'Index 0: Inicio',
     ),
     JobOfferListScreen(),
-    Text(
-      'Index 2: Entrevistas',
-    ),
-    Text(
-      'Index 3: Perfil',
-    ),
+    TableEventsExample(),
+    UserProfile(),
   ];
 
   void _onItemTapped(int index) {
@@ -48,8 +46,10 @@ class NavigationBar_State extends State<NavigationBar> {
             Container(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'CitrusAPP',
-                  style: TextStyle(color: Theme.of(context).primaryColor),
+                  'Jobify',
+                  style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold),
                 ))
           ],
         ),

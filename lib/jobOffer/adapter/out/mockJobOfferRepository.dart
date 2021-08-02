@@ -1,3 +1,4 @@
+import 'package:citrus_app_mobile/user/domain/values/userId.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -18,6 +19,7 @@ class MockJobOfferRepository extends JobOfferRepository {
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offer');
     }
+
     return JobOfferMapper.mapToDomainEntityFromJson(jsonDecode(response.body));
   }
 
@@ -34,5 +36,22 @@ class MockJobOfferRepository extends JobOfferRepository {
     }
 
     return allJobOffers;
+  }
+
+  @override
+  Future<bool> hasUserApplied(
+      http.Client client, OfferId offerId, UserId userId) async {
+    final response = await client
+        .get(Uri.parse(apiUrl + 'applications/' + userId.getIdToString));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load the job offers');
+    }
+    bool hasUserApplied = false;
+    var jobApplication = jsonDecode(response.body);
+    if (jobApplication['jobApplications'].contains(offerId.getId)) {
+      hasUserApplied = true;
+    }
+    return hasUserApplied;
   }
 }
