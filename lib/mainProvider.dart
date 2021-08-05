@@ -1,4 +1,6 @@
 import 'package:citrus_app_mobile/application/provider/applicationActions.dart';
+import 'package:citrus_app_mobile/interview/provider/interviewActions.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +15,8 @@ class MyAppProvider extends StatelessWidget {
           create: (context) => JobOfferActions()),
       ChangeNotifierProvider<ApplicationActions>(
           create: (context) => ApplicationActions())
+      ChangeNotifierProvider<InterviewActions>(
+          create: (context) => InterviewActions())
     ], child: MyApp());
   }
 }

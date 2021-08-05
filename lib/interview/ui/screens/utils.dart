@@ -3,13 +3,17 @@
 
 import 'dart:collection';
 
+import 'package:citrus_app_mobile/interview/domain/interview.dart';
+import 'package:citrus_app_mobile/interview/domain/values/values.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 /// Example event class.
 class Event {
   final String title;
 
-  const Event(this.title);
+  final Interview interview;
+
+  const Event(this.title, this.interview);
 
   @override
   String toString() => title;
@@ -26,13 +30,19 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
 final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
     key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5),
     value: (item) => List.generate(
-        item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))
+        item % 4 + 1,
+        (index) => Event(
+            'Event $item | ${index + 1}',
+            mInterview(
+                DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5)))))
   ..addAll({
     kToday: [
-      Event('Today\'s Event 1'),
-      Event('Today\'s Event 2'),
+      Event('Today\'s Event 1', mInterview(kToday)),
+      Event('Today\'s Event 2', mInterview(kToday)),
     ],
   });
+
+Map<DateTime, List<Event>> get keventSource => _kEventSource;
 
 int getHashCode(DateTime key) {
   return key.day * 1000000 + key.month * 10000 + key.year;
@@ -50,3 +60,7 @@ List<DateTime> daysInRange(DateTime first, DateTime last) {
 final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
 final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
+Interview mInterview(DateTime date) {
+  return Interview(InterviewId(1), StartDate(date), AccessURL('www.google.com'),
+      InterviewStatus('Activo'), Duration(7));
+}
