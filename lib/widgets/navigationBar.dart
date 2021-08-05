@@ -1,3 +1,4 @@
+import 'package:citrus_app_mobile/application/ui/screens/applicationListScreen.dart';
 import 'package:citrus_app_mobile/interview/ui/screens/interviewScreen.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/screens/jobOfferListScreen.dart';
 import 'package:citrus_app_mobile/user/ui/screens/userProfile.dart';
@@ -14,9 +15,7 @@ class NavigationBarState extends State<NavigationBar> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Inicio',
-    ),
+    ApplicationListScreen(),
     JobOfferListScreen(),
     TableEventsExample(),
     UserProfile(),

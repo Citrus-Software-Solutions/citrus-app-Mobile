@@ -9,4 +9,8 @@ class Application {
   final OfferId jobOfferId;
 
   Application(this.id, this.dateApplication, this.employeeId, this.jobOfferId);
+
+  ApplicationId get getId => this.id;
+
+  String get getIdToString => this.id.getApplicationIdToString();
 }
