@@ -78,4 +78,10 @@ class SpringApplicationRepository extends ApplicationRepository {
     }
     return hasUserApplied;
   }
+
+  @override
+  Future<List<Application>> findAllApplications(http.Client client) {
+    // TODO: implement findAllApplications
+    throw UnimplementedError();
+  }
 }
