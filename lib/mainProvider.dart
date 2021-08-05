@@ -14,7 +14,7 @@ class MyAppProvider extends StatelessWidget {
       ChangeNotifierProvider<JobOfferActions>(
           create: (context) => JobOfferActions()),
       ChangeNotifierProvider<ApplicationActions>(
-          create: (context) => ApplicationActions())
+          create: (context) => ApplicationActions()),
       ChangeNotifierProvider<InterviewActions>(
           create: (context) => InterviewActions())
     ], child: MyApp());
