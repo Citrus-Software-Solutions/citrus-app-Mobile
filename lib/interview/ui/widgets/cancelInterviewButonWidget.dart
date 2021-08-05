@@ -33,11 +33,12 @@ class _CancelInterviewButtonWidget extends State<CancelInterviewButtonWidget> {
 
     interviewActions.cancelInterview(interviewId, UserId(1)).then((value) {
       setState(() {
-        print(value);
         Navigator.pop(context);
         Navigator.pop(context);
       });
-    }).onError((error, stackTrace) => showError(context));
+    }).onError((error, stackTrace) {
+      showError(context);
+    });
   }
 
   showLoaderDialog(BuildContext context) {
@@ -63,9 +64,8 @@ class _CancelInterviewButtonWidget extends State<CancelInterviewButtonWidget> {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        content: const Text(
-            '¿Está seguro que desea aplicar a esta oferta de trabajo?',
-            key: const Key('applicationDialogContent')),
+        content: const Text('¿Está seguro que desea cancelar esta entrevista?',
+            key: const Key('interviewDialogContent')),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'No'),
@@ -74,10 +74,10 @@ class _CancelInterviewButtonWidget extends State<CancelInterviewButtonWidget> {
           TextButton(
               onPressed: () async {
                 Navigator.pop(context, 'Si');
-                _cancelInterview(interviewId, UserId(11));
+                _cancelInterview(interviewId, UserId(1));
               },
               child: const Text('Si'),
-              key: Key('applyToJobOffer')),
+              key: Key('cancelInterview')),
         ],
       ),
     );
@@ -90,7 +90,7 @@ class _CancelInterviewButtonWidget extends State<CancelInterviewButtonWidget> {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         content: const Text(
-          'Ha ocurrido un error, ya aplicó a esta oferta de trabajo',
+          'Ha ocurrido un error',
         ),
         actions: <Widget>[
           TextButton(
