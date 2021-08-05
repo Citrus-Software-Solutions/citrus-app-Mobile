@@ -42,7 +42,7 @@ class JobOfferListItemWidget extends StatelessWidget {
                 children: <Widget>[
                   Text('Compañía: ' + jobOffer.getEmployer.getNameToString),
                   SizedBox(height: 5),
-                  Text('Ubicación: ' + jobOffer.getLocationToString),
+                  Text('Ubicación: ' + jobOffer.getCityToString),
                 ],
               )),
           leading: CircleAvatar(

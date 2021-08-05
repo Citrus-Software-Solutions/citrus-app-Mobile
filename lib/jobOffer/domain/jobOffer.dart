@@ -3,76 +3,63 @@ import 'package:citrus_app_mobile/employer/domain/employer.dart';
 
 class JobOffer {
   final OfferId _id;
-  final Employer _employer;
   final OfferName _name;
-  final OfferDescription _description;
-  final OfferStatus _status;
-  final OfferGender _gender;
-  final OfferSalary _salary;
-  final OfferVacants _vacants;
-  final OfferDateRange _dateRange;
-  final OfferAgeRange _ageRange;
-  final OfferLocation _location;
+  final Address _address;
+  final OfferDeadline _deadline;
+  final List<Schedule> _schedules;
+  final List<Skill> _skills;
+  final OfferRequirements _requirements;
+  final OfferDuration _duration;
+  final OfferHourlyRate _hourlyRate;
+  final Employer _employer;
 
   JobOffer(
       this._id,
       this._employer,
       this._name,
-      this._description,
-      this._status,
-      this._gender,
-      this._salary,
-      this._vacants,
-      this._dateRange,
-      this._ageRange,
-      this._location);
+      this._skills,
+      this._address,
+      this._deadline,
+      this._schedules,
+      this._requirements,
+      this._duration,
+      this._hourlyRate);
 
   OfferId get getId => this._id;
 
   int? get getIdToInt => this._id.getId;
 
-  String get getIdToString => this._id.getIdToString;
+  String get getIdToString => this._id.toString();
 
   Employer get getEmployer => this._employer;
 
   OfferName get getName => this._name;
 
-  String get getNameToString => this._name.getName.toString();
+  String get getNameToString => this._name.toString();
 
-  OfferDescription get getDescription => this._description;
+  Address get getAddress => this._address;
 
-  String get getDescriptionToString =>
-      this._description.getDescription.toString();
+  String get getAddressToString => this._address.toString();
 
-  OfferStatus get getStatus => this._status;
+  String get getCityToString => this._address.city;
 
-  String get getStatusToString => this._status.getStatusToString;
+  OfferDeadline get getDeadline => this._deadline;
 
-  OfferSalary get getSalary => this._salary;
+  String get getDeadlineToString => this._deadline.toString();
 
-  String get getSalaryToString => this._salary.getSalaryToString;
+  List<Schedule> get getSchedules => this._schedules;
 
-  OfferVacants get getVacants => this._vacants;
+  List<Skill> get getSkills => this._skills;
 
-  String get getVacantsToString => this._vacants.getVacantsToString;
+  OfferRequirements get getRequirements => this._requirements;
 
-  OfferGender get getGender => this._gender;
+  String get getRequirementsToString => this._requirements.toString();
 
-  String get getGenderToString => this._gender.getName.toString();
+  OfferDuration get getDuration => this._duration;
 
-  OfferDateRange get getDateRange => this._dateRange;
+  String get getDurationToString => this._duration.toString();
 
-  DateTime? get getBeginDate => this._dateRange.getBeginDate;
+  OfferHourlyRate get getHourlyRate => this._hourlyRate;
 
-  DateTime? get getEndDate => this._dateRange.getEndDate;
-
-  OfferAgeRange get getAgeRange => this._ageRange;
-
-  int? get getMinAge => this._ageRange.getminAge;
-
-  int? get getMaxAge => this._ageRange.getMaxAge;
-
-  OfferLocation get getLocation => this._location;
-
-  String get getLocationToString => this._location.getLocation.toString();
+  String get getHourlyRateToString => this._hourlyRate.toString();
 }

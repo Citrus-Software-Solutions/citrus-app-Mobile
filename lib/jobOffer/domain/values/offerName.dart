@@ -3,5 +3,8 @@ class OfferName {
 
   OfferName(this._name);
 
-  String? get getName => this._name;
+  @override
+  String toString() {
+    return this._name!.toString();
+  }
 }

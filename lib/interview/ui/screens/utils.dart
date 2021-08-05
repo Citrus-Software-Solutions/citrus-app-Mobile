@@ -58,9 +58,9 @@ List<DateTime> daysInRange(DateTime first, DateTime last) {
 }
 
 final kToday = DateTime.now();
-final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
-final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
+final kFirstDay = DateTime(kToday.year - 1, kToday.month - 3, kToday.day);
+final kLastDay = DateTime(kToday.year + 1, kToday.month + 2, kToday.day);
 Interview mInterview(DateTime date) {
   return Interview(InterviewId(1), StartDate(date), AccessURL('www.google.com'),
-      InterviewStatus('Activo'), Duration(7));
+      InterviewStatus(0), Duration(7), InterviewTitle('Titulo'));
 }

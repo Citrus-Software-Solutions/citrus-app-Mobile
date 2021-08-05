@@ -6,9 +6,10 @@ class Interview {
   AccessURL _accessURL;
   InterviewStatus _status;
   Duration _duration;
+  InterviewTitle _title;
 
-  Interview(
-      this._id, this._startDate, this._accessURL, this._status, this._duration);
+  Interview(this._id, this._startDate, this._accessURL, this._status,
+      this._duration, this._title);
 
   InterviewId get id => _id;
 
@@ -24,9 +25,11 @@ class Interview {
 
   InterviewStatus get status => _status;
 
-  String get statusToString => _status.status;
+  int get statusToString => _status.status;
 
   Duration get duration => _duration;
 
   String get durationToString => _duration.durationToString;
+
+  String get title => _title.toString();
 }

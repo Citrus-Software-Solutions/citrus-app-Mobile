@@ -5,3 +5,4 @@ export 'interviewId.dart';
 export 'interviewStatus.dart';
 export 'startDate.dart';
 export 'duration.dart';
+export 'interviewTitle.dart';

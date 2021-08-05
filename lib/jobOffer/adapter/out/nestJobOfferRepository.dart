@@ -13,36 +13,15 @@ class NestJobOfferRepository extends JobOfferRepository {
   @override
   Future<JobOffer> findJobOfferById(http.Client client, OfferId id) async {
     final response =
-        await client.get(Uri.parse(apiUrl + 'job-offers/' + id.getIdToString));
+        await client.get(Uri.parse(apiUrl + 'job-offers/' + id.toString()));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offer');
     }
 
     var jobOffer = jsonDecode(response.body);
-    Map<String, dynamic> json = {
-      "id": jobOffer['id'],
-      "name": jobOffer['name'],
-      "description": jobOffer['description'],
-      "status": jobOffer['status'],
-      "gender": jobOffer['gender'],
-      "salary": jobOffer['salary'],
-      "available_vacans": jobOffer['availableVacans'],
-      "date_begin": jobOffer['dateBegin'],
-      "date_end": jobOffer['dateEnd'],
-      "min_age": jobOffer['minAge'],
-      "max_age": jobOffer['maxAge'],
-      "employer_Id": jobOffer['creador']['id'],
-      "employer": {
-        "id": jobOffer['creador']['id'],
-        "name": jobOffer['creador']['name'],
-        "user_id": 3
-      },
-      "location": {"id": 24, "name": "Venezuela"},
-      "location_Id": 24
-    };
 
-    return JobOfferMapper.mapToDomainEntityFromJson(json);
+    return JobOfferMapper.mapToDomainEntityFromJson(jobOffer);
   }
 
   @override
@@ -54,30 +33,7 @@ class NestJobOfferRepository extends JobOfferRepository {
     }
     List<JobOffer> allJobOffers = [];
     for (var jobOffer in jsonDecode(response.body)) {
-      if (jobOffer['status'] == 'Published') {
-        Map<String, dynamic> json = {
-          "id": jobOffer['id'],
-          "name": jobOffer['name'],
-          "description": jobOffer['description'],
-          "status": jobOffer['status'],
-          "gender": jobOffer['gender'],
-          "salary": jobOffer['salary'],
-          "available_vacans": jobOffer['availableVacans'],
-          "date_begin": jobOffer['dateBegin'],
-          "date_end": jobOffer['dateEnd'],
-          "min_age": jobOffer['minAge'],
-          "max_age": jobOffer['maxAge'],
-          "employer_Id": jobOffer['creador']['id'],
-          "employer": {
-            "id": jobOffer['creador']['id'],
-            "name": jobOffer['creador']['name'],
-            "user_id": 3
-          },
-          "location": {"id": 24, "name": "Venezuela"},
-          "location_Id": 24
-        };
-        allJobOffers.add(JobOfferMapper.mapToDomainEntityFromJson(json));
-      }
+      allJobOffers.add(JobOfferMapper.mapToDomainEntityFromJson(jobOffer));
     }
 
     return allJobOffers;
@@ -85,8 +41,23 @@ class NestJobOfferRepository extends JobOfferRepository {
 
   @override
   Future<bool> hasUserApplied(
-      http.Client client, OfferId offerId, UserId userId) {
-    // TODO: implement hasUserApplied
-    throw UnimplementedError();
+      http.Client client, OfferId offerId, UserId userId) async {
+    final response = await http.post(
+      Uri.parse(apiUrl + 'application/applied'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'employeeId': userId.getId,
+        'offerId': offerId.getId,
+      }),
+    );
+
+    if (response.statusCode != 201) {
+      throw Exception('Failed to create the application');
+    }
+    var jobOffer = jsonDecode(response.body);
+    print(jobOffer);
+    return true;
   }
 }

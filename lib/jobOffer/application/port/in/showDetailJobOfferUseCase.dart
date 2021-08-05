@@ -4,6 +4,4 @@ import 'package:citrus_app_mobile/user/domain/values/values.dart';
 
 abstract class ShowDetailJobOfferUseCase {
   Future<JobOffer> showDetailJobOffer(OfferId offerId);
-
-  Future<bool> hasApplied(OfferId offerId, UserId userId);
 }

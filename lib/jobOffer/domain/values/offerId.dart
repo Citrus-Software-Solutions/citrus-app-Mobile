@@ -5,5 +5,8 @@ class OfferId {
 
   int? get getId => this._offerId;
 
-  String get getIdToString => this._offerId.toString();
+  @override
+  String toString() {
+    return this._offerId!.toString();
+  }
 }
