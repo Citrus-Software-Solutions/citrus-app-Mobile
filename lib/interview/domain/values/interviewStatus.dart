@@ -1,7 +1,7 @@
 class InterviewStatus {
-  final String _status;
+  final int _status;
 
   InterviewStatus(this._status);
 
-  String get status => this._status;
+  int get status => this._status;
 }

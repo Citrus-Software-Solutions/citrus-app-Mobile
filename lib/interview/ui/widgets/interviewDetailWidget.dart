@@ -1,5 +1,4 @@
 import 'package:citrus_app_mobile/interview/domain/interview.dart';
-import 'package:citrus_app_mobile/interview/domain/values/interviewId.dart';
 import 'package:citrus_app_mobile/interview/ui/widgets/cancelInterviewButonWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +14,12 @@ class InterviewDetailWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text('Entrevista'),
-        Text('Link de acceso'),
-        Text('Fecha'),
+        Text('Oferta: ' + interview.title),
+        Text('Link de acceso: ' + interview.accessURLToString),
+        Text('Fecha: ' + interview.startDateAsDate.toString()),
         Text('Hora'),
-        Text('Estado'),
-        Text('Duracion'),
-        CancelInterviewButtonWidget(interviewId: InterviewId(1))
+        Text('Duracion: ' + interview.durationToString + ' minutos'),
+        CancelInterviewButtonWidget(interviewId: interview.id)
       ],
     );
   }

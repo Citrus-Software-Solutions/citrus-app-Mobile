@@ -5,9 +5,10 @@ class InterviewMapper {
   static Interview mapToDomainEntityFromJson(Map<String, dynamic> json) {
     return Interview(
         new InterviewId(json['id']),
-        new StartDate(DateTime.parse(json['date'])),
+        new StartDate(DateTime.parse(json['startDate'])),
         new AccessURL(json['accessURL']),
         new InterviewStatus(json['status']),
-        new Duration(int.parse(json['duration'])));
+        new Duration(json['duration']),
+        new InterviewTitle(json['application']['job_Offer']['title']));
   }
 }

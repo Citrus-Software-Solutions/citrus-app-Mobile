@@ -58,11 +58,11 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     for (var interview in _interviews) {
       if (!eventsMap.containsKey(interview.startDateAsDate)) {
         eventsMap[interview.startDateAsDate] = [
-          Event('Entrevista 1', interview)
+          Event(interview.title, interview)
         ];
       } else {
         eventsMap[interview.startDateAsDate]!
-            .add(Event('Entrevista 2', interview));
+            .add(Event(interview.title, interview));
       }
     }
     _events = LinkedHashMap<DateTime, List<Event>>(
@@ -122,85 +122,87 @@ class _TableEventsExampleState extends State<TableEventsExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Entrevistas de trabajo".toUpperCase(),
-          style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.left,
-        ),
-        const SizedBox(height: 8.0),
-        TableCalendar<Event>(
-          headerStyle: HeaderStyle(
-            titleCentered: true,
-            formatButtonVisible: false,
-          ),
-          firstDay: kFirstDay,
-          lastDay: kLastDay,
-          locale: 'es_ES',
-          focusedDay: _focusedDay,
-          selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-          rangeStartDay: _rangeStart,
-          rangeEndDay: _rangeEnd,
-          calendarFormat: _calendarFormat,
-          rangeSelectionMode: _rangeSelectionMode,
-          eventLoader: _getEventsForDay,
-          startingDayOfWeek: StartingDayOfWeek.monday,
-          calendarStyle: CalendarStyle(
-            // Use `CalendarStyle` to customize the UI
-            outsideDaysVisible: false,
-            selectedDecoration: BoxDecoration(
-                color: Theme.of(context).primaryColor, shape: BoxShape.circle),
-          ),
-          onDaySelected: _onDaySelected,
-          onRangeSelected: _onRangeSelected,
-          onFormatChanged: (format) {
-            if (_calendarFormat != format) {
-              setState(() {
-                _calendarFormat = format;
-              });
-            }
-          },
-          onPageChanged: (focusedDay) {
-            _focusedDay = focusedDay;
-          },
-        ),
-        const SizedBox(height: 8.0),
-        Expanded(
-          child: ValueListenableBuilder<List<Event>>(
-            valueListenable: _selectedEvents,
-            builder: (context, value, _) {
-              return ListView.builder(
-                itemCount: value.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 12.0,
-                      vertical: 4.0,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: ListTile(
-                      onTap: () => showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return InterviewDetailWidget(
-                                value[index].interview);
-                          }),
-                      title: Text('${value[index]}'),
-                    ),
-                  );
-                },
-              );
-            },
-          ),
-        ),
-      ],
-    );
+    return Consumer<InterviewActions>(
+        builder: (context, interviewActions, child) => Column(
+              children: [
+                Text(
+                  "Entrevistas de trabajo".toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                const SizedBox(height: 8.0),
+                TableCalendar<Event>(
+                  headerStyle: HeaderStyle(
+                    titleCentered: true,
+                    formatButtonVisible: false,
+                  ),
+                  firstDay: kFirstDay,
+                  lastDay: kLastDay,
+                  locale: 'es_ES',
+                  focusedDay: _focusedDay,
+                  selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                  rangeStartDay: _rangeStart,
+                  rangeEndDay: _rangeEnd,
+                  calendarFormat: _calendarFormat,
+                  rangeSelectionMode: _rangeSelectionMode,
+                  eventLoader: _getEventsForDay,
+                  startingDayOfWeek: StartingDayOfWeek.monday,
+                  calendarStyle: CalendarStyle(
+                    // Use `CalendarStyle` to customize the UI
+                    outsideDaysVisible: false,
+                    selectedDecoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        shape: BoxShape.circle),
+                  ),
+                  onDaySelected: _onDaySelected,
+                  onRangeSelected: _onRangeSelected,
+                  onFormatChanged: (format) {
+                    if (_calendarFormat != format) {
+                      setState(() {
+                        _calendarFormat = format;
+                      });
+                    }
+                  },
+                  onPageChanged: (focusedDay) {
+                    _focusedDay = focusedDay;
+                  },
+                ),
+                const SizedBox(height: 8.0),
+                Expanded(
+                  child: ValueListenableBuilder<List<Event>>(
+                    valueListenable: _selectedEvents,
+                    builder: (context, value, _) {
+                      return ListView.builder(
+                        itemCount: value.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 12.0,
+                              vertical: 4.0,
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: ListTile(
+                              onTap: () => showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return InterviewDetailWidget(
+                                        value[index].interview);
+                                  }),
+                              title: Text('${value[index]}'),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ));
   }
 }

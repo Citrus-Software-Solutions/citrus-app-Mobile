@@ -3,6 +3,7 @@ import 'package:citrus_app_mobile/interview/application/port/out/loadInterviewsP
 import 'package:citrus_app_mobile/interview/domain/values/interviewId.dart';
 import 'package:citrus_app_mobile/interview/domain/interview.dart';
 import 'package:citrus_app_mobile/user/domain/values/userId.dart';
+import 'package:citrus_app_mobile/user/user.dart';
 import 'package:http/http.dart' as http;
 
 class InterviewPersistanceAdapter implements LoadInterviewsPort {
@@ -23,7 +24,7 @@ class InterviewPersistanceAdapter implements LoadInterviewsPort {
   }
 
   @override
-  Future<List<Interview>> loadInterviews() {
-    return this._interviewRepository.findAllInterviews(http.Client());
+  Future<List<Interview>> loadInterviews(UserId userId) {
+    return this._interviewRepository.findAllInterviews(http.Client(), userId);
   }
 }

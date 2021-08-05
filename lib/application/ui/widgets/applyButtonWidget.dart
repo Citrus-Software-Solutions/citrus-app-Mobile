@@ -1,9 +1,11 @@
 import 'package:citrus_app_mobile/application/adapter/out/applicationPersistenceAdapter.dart';
 import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.dart';
 import 'package:citrus_app_mobile/application/adapter/out/mockApplicationRepository.dart';
+import 'package:citrus_app_mobile/application/adapter/out/springApplicationRepository.dart';
 import 'package:citrus_app_mobile/application/application/port/out/createApplicationPort.dart';
 import 'package:citrus_app_mobile/application/application/service/applyToJobOfferService.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';
+import 'package:citrus_app_mobile/jobOffer/adapter/out/springJobOfferRepository.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
 import 'package:citrus_app_mobile/user/domain/values/values.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +37,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
 
   void _createApplication(OfferId offerId, UserId employeeId) async {
     ApplicationRepository applicationRepository =
-        new SpringJobOfferRepository();
+        new SpringApplicationRepository();
     CreateApplicationPort createApplicationPort =
         new ApplicationPersistenceAdapter(applicationRepository);
     ApplyToJobOfferService applyToJobOfferService =

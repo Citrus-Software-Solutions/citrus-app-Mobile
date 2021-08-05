@@ -14,15 +14,21 @@ class SpringApplicationRepository extends ApplicationRepository {
   Future<Application?> applyToJobOffer(
       OfferId offerId, UserId employeeId) async {
     final response = await http.post(
-      Uri.parse(apiUrl + '/job-application'),
+      Uri.parse(apiUrl + 'job-application'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': '*/*',
+        'Conntection': 'keep-alive',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods':
+            'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
       },
       body: jsonEncode(<String, dynamic>{
         'status': 0,
-        'date_application': new DateTime(2021).toString(),
-        'job_offer_id': offerId.getId,
+        'date_application': new DateTime.now().toIso8601String(),
         'employee_id': employeeId.getId,
+        'job_offer_id': offerId.getId
       }),
     );
 
