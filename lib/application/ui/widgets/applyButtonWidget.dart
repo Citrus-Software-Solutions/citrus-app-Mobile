@@ -35,7 +35,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
 
   void _createApplication(OfferId offerId, UserId employeeId) async {
     ApplicationRepository applicationRepository =
-        new MockApplicationRepository();
+        new SpringJobOfferRepository();
     CreateApplicationPort createApplicationPort =
         new ApplicationPersistenceAdapter(applicationRepository);
     ApplyToJobOfferService applyToJobOfferService =

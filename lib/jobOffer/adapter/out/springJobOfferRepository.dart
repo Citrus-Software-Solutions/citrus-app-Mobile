@@ -8,12 +8,12 @@ import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 
 class SpringJobOfferRepository extends JobOfferRepository {
-  final String apiUrl = "http://127.0.0.1:3000/";
+  final String apiUrl = "http://prueba-ds.herokuapp.com/";
 
   @override
   Future<JobOffer> findJobOfferById(http.Client client, OfferId id) async {
     final response =
-        await client.get(Uri.parse(apiUrl + 'job-offer/' + id.getIdToString));
+        await client.get(Uri.parse(apiUrl + 'job-offer/' + id.toString()));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the job offer');
@@ -40,8 +40,22 @@ class SpringJobOfferRepository extends JobOfferRepository {
 
   @override
   Future<bool> hasUserApplied(
-      http.Client client, OfferId offerId, UserId userId) {
-    // TODO: implement hasUserApplied
-    throw UnimplementedError();
+      http.Client client, OfferId offerId, UserId userId) async {
+    final response = await http.get(
+        Uri.parse(apiUrl + 'job-application/employee/' + userId.getIdToString));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load the job offers');
+    }
+    bool hasUserApplied = false;
+    var jobApplication = jsonDecode(response.body);
+    var allApplications = [];
+    for (var application in jobApplication) {
+      allApplications.add(application['jobOffer']['id']);
+    }
+    if (allApplications.contains(offerId.getId)) {
+      hasUserApplied = true;
+    }
+    return hasUserApplied;
   }
 }

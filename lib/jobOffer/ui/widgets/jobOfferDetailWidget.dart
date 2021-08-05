@@ -36,7 +36,7 @@ class JobOfferDetailWidget extends StatelessWidget {
                         color: Theme.of(context).colorScheme.secondaryVariant,
                       ),
                       Text(
-                        jobOffer.getLocationToString,
+                        jobOffer.getAddressToString,
                       )
                     ],
                   )),
@@ -71,25 +71,25 @@ class JobOfferDetailWidget extends StatelessWidget {
           Align description = Align(
               alignment: Alignment.topLeft,
               child: Text(
-                jobOffer.getDescriptionToString,
+                jobOffer.getRequirementsToString,
                 style: TextStyle(
                   fontSize: 12.0,
                 ),
               ));
 
-          String textRequirements = jobOffer.getMinAge.toString() +
+          /* String textRequirements = jobOffer.getMinAge.toString() +
               " años - " +
               jobOffer.getMaxAge.toString() +
-              " años";
+              " años"; */
 
-          Align requirements = Align(
+          /* Align requirements = Align(
               alignment: Alignment.topLeft,
               child: Text(
                 textRequirements,
                 style: TextStyle(
                   fontSize: 12.0,
                 ),
-              ));
+              )); */
 
           Column col = Column(children: [
             details,
@@ -99,7 +99,6 @@ class JobOfferDetailWidget extends StatelessWidget {
                 labelDescription,
                 description,
                 labelRequirements,
-                requirements,
               ]),
             ),
             Row(
