@@ -1,5 +1,7 @@
 import 'package:citrus_app_mobile/employee/domain/employee.dart';
+import 'package:citrus_app_mobile/employee/domain/values/values.dart';
 import 'package:citrus_app_mobile/employee/provider/employeeActions.dart';
+import 'package:citrus_app_mobile/employee/ui/widgets/ExperienceListItemWidget.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/provider/jobOfferActions.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/widgets/jobOfferListItemWidget.dart';
@@ -21,13 +23,22 @@ class UserProfileScreen extends StatelessWidget {
     _employeeActions.loadEmployee();
   }
 
-  ListView _jobOfferList(snapshot) {
+  ListView _experienceList(snapshot) {
+    Employee employee = snapshot.data;
+    int experiencesCount = employee.getWorkExperiences.length;
+
+    if (experiencesCount == 0) {
+      return ListView(
+          children: [Container(child: Text("No tiene trabajos previos"))]);
+    }
+
     return ListView.builder(
-      // scrollDirection: Axis.horizontal,
-      itemCount: snapshot.data?.length,
+      itemCount: experiencesCount,
       itemBuilder: (context, index) {
-        JobOffer jobOffer = snapshot.data![index];
-        return JobOfferListItemWidget(jobOffer: jobOffer, index: index);
+        EmployeeExperience employeeExperience =
+            employee.getWorkExperiences[index];
+        return ExperienceListItemWidget(
+            employeeExperience: employeeExperience, index: index);
       },
     );
   }
@@ -50,10 +61,10 @@ class UserProfileScreen extends StatelessWidget {
                 )),
             Container(
               height: 350.0,
-              child: FutureBuilder<List<JobOffer>>(
+              child: FutureBuilder<Employee>(
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    ListView list = _jobOfferList(snapshot);
+                    ListView list = _experienceList(snapshot);
 
                     return Column(
                       children: [
@@ -71,7 +82,7 @@ class UserProfileScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 },
-                future: _jobOfferActions.jobOffers,
+                future: _employeeActions.currentEmployee,
               ),
             ),
           ],

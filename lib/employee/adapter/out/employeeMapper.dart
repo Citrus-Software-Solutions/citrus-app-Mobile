@@ -10,11 +10,8 @@ class EmployeeMapper {
             json['first_name'], json['middle_name'], json['last_name'], ""),
         EmployeeBirthDate(_getDateTimeFromString(json['birth_date'])),
         _getSkills(json['skills']),
-        // [],
         EmployeeRating(json['rating']),
-        _getExperiences(json['work_experiences'])
-        // []
-        );
+        _getExperiences(json['work_experiences']));
   }
 
   static List<EmployeeSkill> _getSkills(List<dynamic> skills) {
