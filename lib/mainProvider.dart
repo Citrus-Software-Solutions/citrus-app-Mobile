@@ -1,3 +1,4 @@
+import 'package:citrus_app_mobile/employee/provider/employeeActions.dart';
 import 'package:citrus_app_mobile/application/provider/applicationActions.dart';
 import 'package:citrus_app_mobile/interview/provider/interviewActions.dart';
 
@@ -13,6 +14,8 @@ class MyAppProvider extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider<JobOfferActions>(
           create: (context) => JobOfferActions()),
+      ChangeNotifierProvider<EmployeeActions>(
+          create: (context) => EmployeeActions()),
       ChangeNotifierProvider<ApplicationActions>(
           create: (context) => ApplicationActions()),
       ChangeNotifierProvider<InterviewActions>(

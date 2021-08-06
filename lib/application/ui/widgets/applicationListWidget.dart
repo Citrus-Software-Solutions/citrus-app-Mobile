@@ -7,15 +7,15 @@ import 'package:citrus_app_mobile/application/ui/widgets/applicationListItemWidg
 class ApplicationListWidget extends StatelessWidget {
   final Future<List<Application>> applicationList;
   // final Future<List<JobOffer>> jobOfferList;
-  final int maxApplications = 3;
+  // final int maxApplications = 3;
 
   const ApplicationListWidget({Key? key, required this.applicationList})
       : super(key: key);
 
   ListView _applicationList(snapshot) {
     return ListView.builder(
-      // itemCount: snapshot.data?.length,
-      itemCount: maxApplications,
+      itemCount: snapshot.data?.length,
+      // itemCount: maxApplications,
       itemBuilder: (context, index) {
         Application application = snapshot.data![index];
         return ApplicationListItemWidget(
