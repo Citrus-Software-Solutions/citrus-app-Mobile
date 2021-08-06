@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';
 import 'package:citrus_app_mobile/application/ui/widgets/applicationListItemWidget.dart';
 
 class ApplicationListWidget extends StatelessWidget {
   final Future<List<Application>> applicationList;
+  // final Future<List<JobOffer>> jobOfferList;
   final int maxApplications = 3;
 
   const ApplicationListWidget({Key? key, required this.applicationList})
       : super(key: key);
 
-  // ⚠️ La lista solo toma los 3 primeros elementos
   ListView _applicationList(snapshot) {
     return ListView.builder(
       // itemCount: snapshot.data?.length,

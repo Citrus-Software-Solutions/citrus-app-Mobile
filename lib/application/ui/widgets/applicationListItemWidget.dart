@@ -42,7 +42,7 @@ class ApplicationListItemWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   // SizedBox(height: 5),
-                  Text('Compañía: [compañía]'),
+                  Text('Compañía: ' + application.getCompanyNameToString),
                 ],
               )),
 

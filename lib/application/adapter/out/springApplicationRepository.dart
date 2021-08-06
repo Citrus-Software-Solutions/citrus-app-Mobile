@@ -80,8 +80,19 @@ class SpringApplicationRepository extends ApplicationRepository {
   }
 
   @override
-  Future<List<Application>> findAllApplications(http.Client client) {
-    // TODO: implement findAllApplications
-    throw UnimplementedError();
+  Future<List<Application>> findAllApplications(http.Client client) async {
+    final response =
+        await client.get(Uri.parse(apiUrl + 'job-application/employee/1'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load the applications');
+    }
+    List<Application> allApplications = [];
+    for (var application in jsonDecode(response.body)) {
+      allApplications
+          .add(ApplicationMapper.mapToDomainEntityFromJson(application));
+    }
+
+    return allApplications;
   }
 }
