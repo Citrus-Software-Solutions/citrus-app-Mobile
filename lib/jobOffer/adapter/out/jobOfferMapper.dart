@@ -26,7 +26,7 @@ class JobOfferMapper {
                 json['employer']['address']['street2'],
                 json['employer']['address']['city'],
                 json['employer']['address']['state'],
-                json['employer']['address']['_zip'])),
+                json['employer']['address']['zip'])),
         new OfferName(json['title']),
         skills,
         new Address(
@@ -34,7 +34,7 @@ class JobOfferMapper {
             json['location']['street2'],
             json['location']['city'],
             json['location']['state'],
-            json['location']['_zip']),
+            json['location']['zip']),
         new OfferDeadline(DateTime.parse(json['dead_line'])),
         schedules,
         new OfferRequirements(json['special_requirements']),

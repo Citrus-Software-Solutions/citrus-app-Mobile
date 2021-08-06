@@ -29,8 +29,14 @@ class MockApplicationRepository extends ApplicationRepository {
       throw Exception('Failed to create the application');
     }
     var json = jsonDecode(response.body);
-    return Application(ApplicationId(json['id']),
-        ApplicationDate(new DateTime(2021, 1, 1)), employeeId, offerId);
+    return Application(
+      ApplicationId(json['id']),
+      ApplicationDate(new DateTime(2021, 1, 1)),
+      ApplicationStatus(0),
+      ApplicationCompanyName('Alpha'),
+      employeeId,
+      offerId,
+    );
   }
 
   @override

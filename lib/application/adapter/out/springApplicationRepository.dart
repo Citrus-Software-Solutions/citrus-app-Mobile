@@ -1,4 +1,5 @@
 import 'package:citrus_app_mobile/application/adapter/out/applicationMapper.dart';
+import 'package:citrus_app_mobile/application/domain/values/values.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -37,7 +38,12 @@ class SpringApplicationRepository extends ApplicationRepository {
     }
     var json = jsonDecode(response.body);
     return Application(
-        json['id'], json['application_Date'], employeeId, offerId);
+        json['id'],
+        json['application_Date'],
+        ApplicationStatus(0),
+        ApplicationCompanyName("Alpha"),
+        employeeId,
+        offerId);
   }
 
   Future<List<Application>?> getApplicationsByUser(UserId employeeId) async {
@@ -81,8 +87,19 @@ class SpringApplicationRepository extends ApplicationRepository {
   }
 
   @override
-  Future<List<Application>> findAllApplications(http.Client client) {
-    // TODO: implement findAllApplications
-    throw UnimplementedError();
+  Future<List<Application>> findAllApplications(http.Client client) async {
+    final response =
+        await client.get(Uri.parse(apiUrl + 'job-application/employee/1'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load the applications');
+    }
+    List<Application> allApplications = [];
+    for (var application in jsonDecode(response.body)) {
+      allApplications
+          .add(ApplicationMapper.mapToDomainEntityFromJson(application));
+    }
+
+    return allApplications;
   }
 }

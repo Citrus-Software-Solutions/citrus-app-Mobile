@@ -7,8 +7,12 @@ class ApplicationMapper {
   static Application mapToDomainEntityFromJson(Map<String, dynamic> json) {
     return Application(
         new ApplicationId(json['id']),
+        // new ApplicationDate(DateTime.parse(json['application_Date'])),
         new ApplicationDate(new DateTime(2020, 1, 1)),
-        new UserId(json['employeeId']),
-        new OfferId(json['jobOffer']));
+        new ApplicationStatus(json['status']),
+        new ApplicationCompanyName(
+            json['jobOffer']['employer']['company_name']),
+        new UserId(json['employee']['id']),
+        new OfferId(json['jobOffer']['id']));
   }
 }

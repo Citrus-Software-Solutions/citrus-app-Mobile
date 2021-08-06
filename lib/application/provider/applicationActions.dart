@@ -1,3 +1,4 @@
+import 'package:citrus_app_mobile/application/adapter/out/springApplicationRepository.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';
 import 'package:citrus_app_mobile/application/adapter/out/applicationPersistenceAdapter.dart';
 import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.dart';
@@ -12,7 +13,8 @@ class ApplicationActions with ChangeNotifier {
 
   ApplicationActions() {
     ApplicationRepository applicationRepository =
-        new MockApplicationRepository();
+        // new MockApplicationRepository();
+        new SpringApplicationRepository();
 
     LoadApplicationsPort loadApplicationsPort =
         new ApplicationPersistenceAdapter(applicationRepository);

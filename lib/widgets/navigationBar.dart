@@ -1,7 +1,7 @@
 import 'package:citrus_app_mobile/application/ui/screens/applicationListScreen.dart';
 import 'package:citrus_app_mobile/interview/ui/screens/interviewScreen.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/screens/jobOfferListScreen.dart';
-import 'package:citrus_app_mobile/user/ui/screens/userProfile.dart';
+import 'package:citrus_app_mobile/user/ui/screens/userProfileScreen.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBar extends StatefulWidget {
@@ -18,7 +18,7 @@ class NavigationBarState extends State<NavigationBar> {
     ApplicationListScreen(),
     JobOfferListScreen(),
     TableEventsExample(),
-    UserProfile(),
+    UserProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
