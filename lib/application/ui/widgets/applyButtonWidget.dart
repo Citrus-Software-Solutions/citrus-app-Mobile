@@ -1,28 +1,34 @@
 import 'package:citrus_app_mobile/application/adapter/out/applicationPersistenceAdapter.dart';
 import 'package:citrus_app_mobile/application/adapter/out/applicationRepository.dart';
 import 'package:citrus_app_mobile/application/adapter/out/mockApplicationRepository.dart';
+import 'package:citrus_app_mobile/application/adapter/out/springApplicationRepository.dart';
 import 'package:citrus_app_mobile/application/application/port/out/createApplicationPort.dart';
 import 'package:citrus_app_mobile/application/application/service/applyToJobOfferService.dart';
 import 'package:citrus_app_mobile/application/domain/application.dart';
+import 'package:citrus_app_mobile/jobOffer/adapter/out/springJobOfferRepository.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/values/offerId.dart';
 import 'package:citrus_app_mobile/user/domain/values/values.dart';
 import 'package:flutter/material.dart';
 
 class ApplyButtonWidget extends StatefulWidget {
-  ApplyButtonWidget({Key? key, required this.offerId}) : super(key: key);
+  ApplyButtonWidget({Key? key, required this.offerId, required this.hasApplied})
+      : super(key: key);
 
   final OfferId offerId;
+  final Future<bool> hasApplied;
 
   @override
-  _ApplyButtonWidget createState() => _ApplyButtonWidget(offerId);
+  _ApplyButtonWidget createState() => _ApplyButtonWidget(offerId, hasApplied);
 }
 
 class _ApplyButtonWidget extends State<ApplyButtonWidget> {
   late Application? _futureApplication;
+  final Future<bool> hasApplied;
+
   bool _hasApplied = false;
   OfferId offerId;
 
-  _ApplyButtonWidget(this.offerId);
+  _ApplyButtonWidget(this.offerId, this.hasApplied);
 
   @override
   void initState() {
@@ -31,7 +37,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
 
   void _createApplication(OfferId offerId, UserId employeeId) async {
     ApplicationRepository applicationRepository =
-        new MockApplicationRepository();
+        new SpringApplicationRepository();
     CreateApplicationPort createApplicationPort =
         new ApplicationPersistenceAdapter(applicationRepository);
     ApplyToJobOfferService applyToJobOfferService =
@@ -42,6 +48,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
     applyToJobOfferService.applyToJobOffer(offerId, employeeId).then((value) {
       setState(() {
         _futureApplication = value;
+
         if (_futureApplication is Application?) {
           _hasApplied = true;
           Navigator.pop(context);
@@ -84,7 +91,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
           TextButton(
               onPressed: () async {
                 Navigator.pop(context, 'Si');
-                _createApplication(offerId, UserId(11));
+                _createApplication(offerId, UserId(1));
               },
               child: const Text('Si'),
               key: Key('applyToJobOffer')),
@@ -102,7 +109,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         content: const Text(
-          'Ha ocurrido un error, ya aplicó a esta oferta de trabajo',
+          'Su aplicación ha sido enviada!',
         ),
         actions: <Widget>[
           TextButton(
@@ -117,12 +124,42 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
   @override
   Widget build(BuildContext context) {
     try {
-      return TextButton(
-        onPressed: () => _hasApplied ? null : showConfirmationDialog(context),
-        child: _hasApplied
-            ? Text('Aplicación en proceso', key: Key('applyButtonText'))
-            : Text('Aplicar ahora', key: Key('applyButtonText')),
-        key: const Key('apply'),
+      return FutureBuilder<bool>(
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data != null) {
+              _hasApplied = _hasApplied || snapshot.data!;
+              return TextButton(
+                onPressed: () =>
+                    _hasApplied ? null : showConfirmationDialog(context),
+                child: _hasApplied
+                    ? Text('Aplicación en proceso', key: Key('applyButtonText'))
+                    : Text('Aplicar ahora', key: Key('applyButtonText')),
+                key: const Key('apply'),
+                style: TextButton.styleFrom(
+                    padding: EdgeInsets.all(20),
+                    primary: Colors.white,
+                    backgroundColor: _hasApplied
+                        ? Theme.of(context).colorScheme.secondary
+                        : Theme.of(context).colorScheme.primary,
+                    onSurface: Colors.grey,
+                    elevation: 5,
+                    side: BorderSide(
+                        color: _hasApplied
+                            ? Theme.of(context).colorScheme.secondary
+                            : Theme.of(context).colorScheme.primary,
+                        width: 5)),
+              );
+            }
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+        future: hasApplied,
       );
     } catch (exception) {
       // TODO: Implementar manejo de errores

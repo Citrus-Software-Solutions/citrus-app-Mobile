@@ -11,7 +11,7 @@ class EmployeeActions with ChangeNotifier {
   late Future<Employee> _currentEmployee;
   late ShowDetailEmployeeService _showDetailEmployeeService;
 
-  UserActions() {
+  EmployeeActions() {
     loadEmployee();
   }
 

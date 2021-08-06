@@ -5,8 +5,10 @@ import 'package:flutter/widgets.dart';
 
 class JobOfferDetailWidget extends StatelessWidget {
   final Future<JobOffer> futureJobOffer;
+  final Future<bool> hasApplied;
 
-  const JobOfferDetailWidget({Key? key, required this.futureJobOffer})
+  const JobOfferDetailWidget(
+      {Key? key, required this.futureJobOffer, required this.hasApplied})
       : super(key: key);
 
   @override
@@ -34,7 +36,7 @@ class JobOfferDetailWidget extends StatelessWidget {
                         color: Theme.of(context).colorScheme.secondaryVariant,
                       ),
                       Text(
-                        jobOffer.getLocationToString,
+                        jobOffer.getAddressToString,
                       )
                     ],
                   )),
@@ -69,25 +71,25 @@ class JobOfferDetailWidget extends StatelessWidget {
           Align description = Align(
               alignment: Alignment.topLeft,
               child: Text(
-                jobOffer.getDescriptionToString,
+                jobOffer.getRequirementsToString,
                 style: TextStyle(
                   fontSize: 12.0,
                 ),
               ));
 
-          String textRequirements = jobOffer.getMinAge.toString() +
+          /* String textRequirements = jobOffer.getMinAge.toString() +
               " años - " +
               jobOffer.getMaxAge.toString() +
-              " años";
+              " años"; */
 
-          Align requirements = Align(
+          /* Align requirements = Align(
               alignment: Alignment.topLeft,
               child: Text(
                 textRequirements,
                 style: TextStyle(
                   fontSize: 12.0,
                 ),
-              ));
+              )); */
 
           Column col = Column(children: [
             details,
@@ -97,13 +99,15 @@ class JobOfferDetailWidget extends StatelessWidget {
                 labelDescription,
                 description,
                 labelRequirements,
-                requirements,
               ]),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[ApplyButtonWidget(offerId: jobOffer.getId)],
+              children: <Widget>[
+                ApplyButtonWidget(
+                    offerId: jobOffer.getId, hasApplied: hasApplied)
+              ],
             )
           ]);
 

@@ -1,11 +1,12 @@
 import 'package:citrus_app_mobile/widgets/navigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:citrus_app_mobile/widgets/theme.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'mainProvider.dart';
 
 void main() {
-  runApp(MyAppProvider());
+  initializeDateFormatting().then((_) => runApp(MyAppProvider()));
 }
 
 class MyApp extends StatelessWidget {
