@@ -26,6 +26,13 @@ class ApplicationListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Text greetings = Text("Hola, Alba".toUpperCase(),
+        style: TextStyle(
+          fontSize: 24.0,
+          fontWeight: FontWeight.bold,
+        ),
+        key: const Key('greetings'));
+
     Text labelDescription = Text("Aplicaciones".toUpperCase(),
         style: TextStyle(
           fontSize: 18.0,
@@ -40,6 +47,15 @@ class ApplicationListWidget extends StatelessWidget {
 
           return Column(
             children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 12, 0, 12),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    child: greetings,
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.fromLTRB(20, 12, 0, 0),
                 child: Align(
