@@ -46,7 +46,7 @@ class SpringInterviewRepository extends InterviewRepository {
   Future<Interview> findInterviewById(
       http.Client client, InterviewId id) async {
     final response =
-        await client.get(Uri.parse(apiUrl + 'interviews/' + id.idToString));
+        await client.get(Uri.parse(apiUrl + 'interview/' + id.idToString));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load the interviews');
