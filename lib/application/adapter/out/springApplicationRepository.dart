@@ -1,4 +1,5 @@
 import 'package:citrus_app_mobile/application/adapter/out/applicationMapper.dart';
+import 'package:citrus_app_mobile/application/domain/values/values.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -37,7 +38,12 @@ class SpringApplicationRepository extends ApplicationRepository {
     }
     var json = jsonDecode(response.body);
     return Application(
-        json['id'], json['application_Date'], employeeId, offerId);
+        json['id'],
+        json['application_Date'],
+        ApplicationStatus(0),
+        ApplicationCompanyName("Alpha"),
+        employeeId,
+        offerId);
   }
 
   Future<List<Application>?> getApplicationsByUser(UserId employeeId) async {
