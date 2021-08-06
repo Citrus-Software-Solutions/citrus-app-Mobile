@@ -1,6 +1,6 @@
 import 'package:citrus_app_mobile/employee/domain/employee.dart';
 import 'package:citrus_app_mobile/employee/domain/values/values.dart';
-import 'package:citrus_app_mobile/employee/ui/widgets/ExperienceListItemWidget.dart';
+import 'package:citrus_app_mobile/employee/ui/widgets/experienceListItemWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';

@@ -1,7 +1,7 @@
 import 'package:citrus_app_mobile/employee/domain/employee.dart';
 import 'package:citrus_app_mobile/employee/domain/values/values.dart';
 import 'package:citrus_app_mobile/employee/provider/employeeActions.dart';
-import 'package:citrus_app_mobile/employee/ui/widgets/ExperienceListItemWidget.dart';
+import 'package:citrus_app_mobile/employee/ui/widgets/experienceListItemWidget.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/provider/jobOfferActions.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/widgets/jobOfferListItemWidget.dart';

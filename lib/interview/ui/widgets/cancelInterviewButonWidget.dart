@@ -37,6 +37,7 @@ class _CancelInterviewButtonWidget extends State<CancelInterviewButtonWidget> {
         Navigator.pop(context);
       });
     }).onError((error, stackTrace) {
+      print(error);
       showError(context);
     });
   }
