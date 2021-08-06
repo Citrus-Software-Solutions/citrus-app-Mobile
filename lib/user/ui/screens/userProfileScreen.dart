@@ -1,3 +1,5 @@
+import 'package:citrus_app_mobile/employee/domain/employee.dart';
+import 'package:citrus_app_mobile/employee/provider/employeeActions.dart';
 import 'package:citrus_app_mobile/jobOffer/domain/jobOffer.dart';
 import 'package:citrus_app_mobile/jobOffer/provider/jobOfferActions.dart';
 import 'package:citrus_app_mobile/jobOffer/ui/widgets/jobOfferListItemWidget.dart';
@@ -8,11 +10,15 @@ import 'package:provider/provider.dart';
 
 class UserProfileScreen extends StatelessWidget {
   late UserActions _userActions;
+  late EmployeeActions _employeeActions;
   late JobOfferActions _jobOfferActions;
 
   void loadJobOffers(context) {
     _jobOfferActions = Provider.of<JobOfferActions>(context);
     _jobOfferActions.showAllOffers();
+
+    _employeeActions = Provider.of<EmployeeActions>(context);
+    _employeeActions.loadEmployee();
   }
 
   ListView _jobOfferList(snapshot) {
@@ -102,25 +108,51 @@ class UserProfileScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.0,
                     ),
-                    Text(
-                      "Alice James",
-                      style: TextStyle(
-                        fontSize: 20.0,
-                      ),
+                    FutureBuilder<Employee>(
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Text(
+                            snapshot.data!.getFullName,
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Text("${snapshot.error}");
+                        }
+
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                      future: _employeeActions.currentEmployee,
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
-                    RatingBarIndicator(
-                      rating: 2.75,
-                      itemBuilder: (context, index) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      itemCount: 5,
-                      itemSize: 30.0,
-                      direction: Axis.horizontal,
-                    )
+                    FutureBuilder<Employee>(
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return RatingBarIndicator(
+                            rating: snapshot.data!.getRating.getValue,
+                            itemBuilder: (context, index) => Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            itemCount: 5,
+                            itemSize: 30.0,
+                            direction: Axis.horizontal,
+                          );
+                        } else if (snapshot.hasError) {
+                          return Text("${snapshot.error}");
+                        }
+
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                      future: _employeeActions.currentEmployee,
+                    ),
                   ],
                 ),
               ),
