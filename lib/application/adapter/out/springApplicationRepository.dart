@@ -32,11 +32,12 @@ class SpringApplicationRepository extends ApplicationRepository {
       }),
     );
 
-    if (response.statusCode != 201) {
+    if (response.statusCode != 200) {
       throw Exception('Failed to create the application');
     }
-
-    return null;
+    var json = jsonDecode(response.body);
+    return Application(
+        json['id'], json['application_Date'], employeeId, offerId);
   }
 
   Future<List<Application>?> getApplicationsByUser(UserId employeeId) async {

@@ -17,12 +17,11 @@ class SpringInterviewRepository extends InterviewRepository {
       Uri.parse(apiUrl + 'interview/' + offerId.idToString + '/status/3'),
     );
 
-    if (response.statusCode != 201) {
+    if (response.statusCode != 200) {
       throw Exception('Failed to create the application');
     }
 
-    var json = jsonDecode(response.body);
-    return json;
+    return response.statusCode;
   }
 
   @override
@@ -35,10 +34,11 @@ class SpringInterviewRepository extends InterviewRepository {
       throw Exception('Failed to load the interviews');
     }
     List<Interview> allInterviews = [];
-    for (var jobOffer in jsonDecode(response.body)) {
-      allInterviews.add(InterviewMapper.mapToDomainEntityFromJson(jobOffer));
+    for (var interview in jsonDecode(response.body)) {
+      if (interview['status'] != 3) {
+        allInterviews.add(InterviewMapper.mapToDomainEntityFromJson(interview));
+      }
     }
-    print(allInterviews);
     return allInterviews;
   }
 

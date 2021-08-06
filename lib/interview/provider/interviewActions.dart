@@ -52,7 +52,7 @@ class InterviewActions with ChangeNotifier {
 
   void showAllInterviews() {
     var futureListInterviews =
-        _showAllInterviewsService.showAllInterviews(UserId(2));
+        _showAllInterviewsService.showAllInterviews(UserId(1));
     this.interviews = futureListInterviews;
     notifyListeners();
   }

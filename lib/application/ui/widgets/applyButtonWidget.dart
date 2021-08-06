@@ -48,6 +48,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
     applyToJobOfferService.applyToJobOffer(offerId, employeeId).then((value) {
       setState(() {
         _futureApplication = value;
+
         if (_futureApplication is Application?) {
           _hasApplied = true;
           Navigator.pop(context);
@@ -90,7 +91,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
           TextButton(
               onPressed: () async {
                 Navigator.pop(context, 'Si');
-                _createApplication(offerId, UserId(11));
+                _createApplication(offerId, UserId(1));
               },
               child: const Text('Si'),
               key: Key('applyToJobOffer')),
@@ -108,7 +109,7 @@ class _ApplyButtonWidget extends State<ApplyButtonWidget> {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         content: const Text(
-          'Ha ocurrido un error, ya aplicó a esta oferta de trabajo',
+          'Su aplicación ha sido enviada!',
         ),
         actions: <Widget>[
           TextButton(
